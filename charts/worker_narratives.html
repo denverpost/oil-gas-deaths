@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>Oil and gas worker deaths chart</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+    <style>
+    th.legend {
+        background-color: #eee;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    td.legend {
+        background-color: #eee;
+        padding: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    table#profile {
+        /* max-width: 58%; */
+        table-layout: fixed;
+        border-collapse: inherit;
+        border: none;
+        border-spacing: 3px;
+        float: left;
+        clear: both;
+    }
+    
+    table#profile td > div {
+        display: none;
+    }
+    
+    table#profile td.struck,
+    table#profile td.explosion,
+    table#profile td.vehicle,
+    table#profile td.fall,
+    table#profile td.crush,
+    table#profile td.collapse,
+    table#profile td.gauging,
+    table#profile td.electrocution,
+    table#profile td.asphyxiation,
+    table#profile td.homicide {
+        background-image: url("chart_figure.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 75%;
+    }
+    
+    td.fall {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.fall:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.struck {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.struck:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.crush {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.crush:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.explosion {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.explosion:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.collapse {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.collapse:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.vehicle {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.vehicle:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.electrocution {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.electrocution:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.asphyxiation {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.asphyxiation:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.homicide {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.homicide:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    td.gauging {
+        background-color: #ddd;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+    }
+    
+    td.gauging:hover {
+        background: rgba(22, 117, 175, .8);
+    }
+    
+    table#profile tr {
+        /* height: 25px; */
+        background: none;
+    }
+    
+    #profile-container {
+        /* width: 40%;
+        float: right; */
+        margin-top: 25px;
+    }
+    
+    .table-content {
+        margin: -28px 10px 10px 10px;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+    
+    .table-content p {
+        margin-top: -10px;
+    }
+    
+    .table-content h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    table#profile td.date {
+        font-weight: bold;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        color: #333;
+        height: 25px;
+        width: 40px;
+    }
+    
+    table#profile th {
+        border-color: none;
+    }
+    /* @media (max-width: 600px) {
+        table#profile {
+            max-width: 100%;
+            float: none;
+        }
+        #profile-container {
+            width: 100%;
+            float: none;
+            margin-top: 50px;
+            margin-left: 10px;
+        }
+    } */
+    
+    td.cell-highlight {
+        background: rgba(175, 22, 40, .6);
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Veritcal orientation -->
+    <div class="row">
+        <div class="large-12 columns">
+            <h2>Oil and gas worker fatalities</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-3 medium-5 columns">
+            <p>Since 2001 44 oil and gas workers have died on the job site chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter chatter. <em>Click chart segments for details about the workers.</em></p>
+        </div>
+        <!-- <ul class="legend">
+            <li class="click-type small button" id="legend-struck" data-type="struck">Struck by equipment (11)</li>
+            <li class="click-type button" id="legend-explosion" data-type="explosion">Explosion/fire (8)</li>
+            <li class="click-type button" id="legend-vehicle" data-type="vehicle">Vehicle accident (8)</li>
+            <li class="click-type button" id="legend-fall" data-type="fall">Fall (4)</li>
+            <li class="click-type button" id="legend-crush" data-type="crush">Crushed (3)</li>
+            <li class="click-type button" id="legend-collapse" data-type="collapse">Rig collapse (3)</li>
+            <li class="click-type button" id="legend-gauging" data-type="gauging">Gauging (3)</li>
+            <li class="click-type button" id="legend-electrocution" data-type="electrocution">Electrocution (2)</li>
+            <li class="click-type button" id="legend-asphyxiation" data-type="asphyxiation">Asphyxiation (1)</li>
+            <li class="click-type button" id="legend-homicide" data-type="homicide">Homicide (1)</li>
+        </ul> -->
+        <div class="large-7 medium-7 columns end">
+            <table id="legend-2">
+                <tr>
+                    <th class="legend" colspan=2>Cause of death <span style="font-weight: normal; font-style: italic; font-size: 12px;">click to highlight</span></th>
+                </tr>
+                <tr>
+                    <td class="click-type legend" id="legend-struck" data-type="struck"><a href="" onclick="return false">Struck by equipment (11)</a></td>
+                    <td class="click-type legend" id="legend-explosion" data-type="explosion"><a href="" onclick="return false">Explosion/fire (8)</a></td>
+                </tr>
+                <tr>
+                    <td class="click-type legend" id="legend-vehicle" data-type="vehicle"><a href="" onclick="return false">Vehicle accident (8)</a></td>
+                    <td class="click-type legend" id="legend-fall" data-type="fall"><a href="" onclick="return false">Fall (4)</a></td>
+                </tr>
+                <tr>
+                    <td class="click-type legend" id="legend-crush" data-type="crush"><a href="" onclick="return false">Crushed  (3)</a></td>
+                    <td class="click-type legend" id="legend-collapse" data-type="collapse"><a href="" onclick="return false">Rig collapse (3)</a></td>
+                </tr>
+                <tr>
+                    <td class="click-type legend" id="legend-gauging" data-type="gauging"><a href="" onclick="return false">Gauging (3)</a></td>
+                    <td class="click-type legend" id="legend-electrocution" data-type="electrocution"><a href="" onclick="return false">Electrocution (2)</a></td>
+                </tr>
+                <tr>
+                    <td class="click-type legend" id="legend-asphyxiation" data-type="asphyxiation"><a href="" onclick="return false">Asphyxiation (1)</a></td>
+                    <td class="click-type legend" id="legend-homicide" data-type="homicide"><a href="" onclick="return false">Homicide (1)</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-5 medium-5 columns">
+            <table id="profile">
+                <tr>
+                    <th></th>
+                    <th colspan=8>Fatalities</th>
+                </tr>
+                <tr>
+                    <td class="date">'01</td>
+                    <td class="cell fall" title="Name unavailable" align="center">
+                        <div class="table-content">
+                            <h3><em>Name unavailable</em></h3>
+                            <p><strong>Age: </strong><em>unavailable</em></p>
+                            <p><strong>Date: </strong> 2/8/2001</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong><em>unknown</em></p>
+                            <p><strong>Cause of death: </strong>Fall</p>
+                            <p>The worker, a welder, was standing on a ladder while working on a mud pump when a pressure-release valve opened up, blasting him. The worker was knocked off the ladder and fell to the ground, killing him. An OSHA report lists his cause of death as, "apparent head injuries and concussion."</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=303675565">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Martin Mireles" align="center">
+                        <div class="table-content">
+                            <h3>Martin Mireles</h3>
+                            <p><strong>Age: </strong>48</p>
+                            <p><strong>Date: </strong> 7/11/2001</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Key Energy Services</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>Mireles and three co-workers were installing new tubing at a horsehead-style oil well. While two co-workers went to lunch, Mireles and another co-worker started picking up tools. Mireles climbed over a guardrail and got too close to the well, where he was hit by the well's turning counterweight and killed.</p>
+                            <p><strong>Initial violations: </strong>2</p>
+                            <p><strong>Final violations: </strong>2</p>
+                            <p><strong>Initial fine: </strong>$4,750</p>
+                            <p><strong>Final fine: </strong>$4,750</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=303677967&id=303677884">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Rex McCarley" align="center">
+                        <div class="table-content">
+                            <h3>Rex McCarley</h3>
+                            <p><strong>Age: </strong>44</p>
+                            <p><strong>Date: </strong> 9/15/2001</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Baker Oil & Tool</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>McCarley was working on a smaller type of rig that is typically mounted on a truck. A 60-pound valve came apart above him and fell approximately 15 feet onto his head. He was wearing a hard hat, but it was not enough to protect him. He died en route to the hospital.</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=303679336&id=303679344&id=303679328&id=303679351">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'02</td>
+                    <td class="cell crush" title="Michael Blanchfield" align="center">
+                        <div class="table-content">
+                            <h3>Michael Blanchfield</h3>
+                            <p><strong>Age: </strong>41</p>
+                            <p><strong>Date: </strong> 10/1/2002</p>
+                            <p><strong>County: </strong>Rio Blanco</p>
+                            <p><strong>Employer: </strong>Hayes Petroleum</p>
+                            <p><strong>Cause of death: </strong>Crushed between equipment</p>
+                            <p>Blanchfield was standing atop a heavy-duty winch on and oil and gas rig when the winch operator turned it on. The winch's cable cut across his body and pulled him into the machinery, killing him. An OSHA inspection found that the winch lacked covers to protect against injury and that the company did not exercise appropriate safety procedures when adjusting the winch's brakes.</p>
+                            <p><strong>Initial violations: </strong>6</p>
+                            <p><strong>Final violations: </strong>6</p>
+                            <p><strong>Initial fine: </strong>$6,000</p>
+                            <p><strong>Final fine: </strong>$4,386</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=304981178&id=304981160&id=304981186">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell fall" title="Marty Vigil" align="center">
+                        <div class="table-content">
+                            <h3>Marty Vigil</h3>
+                            <p><strong>Age: </strong>32</p>
+                            <p><strong>Date: </strong> 11/17/2002</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Caza Drilling</p>
+                            <p><strong>Cause of death: </strong>Fall</p>
+                            <p>Vigil was working 100 feet up on a rig preparing drill pipe to go into the hole. He was not wearing fall protection and fell to his death. Vigil was a native of Denver who enjoyed coaching his son's football team, according to his obituary. He also left behind his wife and a daughter.</p>
+                            <p><strong>Initial violations: </strong>5</p>
+                            <p><strong>Final violations: </strong>4</p>
+                            <p><strong>Initial fine: </strong>$7,650</p>
+                            <p><strong>Final fine: </strong>$4,313</p>
+                            <p><a href="http://www.greeleytribune.com/article/20021120/OBIT/211200003">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=304982663&id=304982648">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'03</td>
+                    <td class="cell explosion" title="Raul Barron" align="center">
+                        <div class="table-content">
+                            <h3>Raul Barron</h3>
+                            <p><strong>Age: </strong>44</p>
+                            <p><strong>Date: </strong> 3/31/2003</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Bravo Services</p>
+                            <p><strong>Cause of death: </strong>Explosion/fire</p>
+                            <p>Barron was working on a water tank with his brother and another man at a facility where water produced during fracking is disposed. Flammable vapors gathered around them, and the torch of a nearby welder set off an explosion that killed Barron and wounded his brother and the other man. Barron was born in Mexico and was survived by his wife and four children, according to his obituary.</p>
+                            <p><strong>Initial violations: </strong>12</p>
+                            <p><strong>Final violations: </strong>10</p>
+                            <p><strong>Initial fine: </strong>$30,750</p>
+                            <p><strong>Final fine: </strong>$20,900</p>
+                            <p><a href="http://www.greeleytribune.com/article/20030403/OBIT/304030007">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=306368671&id=306372442&id=306372459">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell collapse" title="Stephen Amen" align="center">
+                        <div class="table-content">
+                            <h3>Stephen Amen</h3>
+                            <p><strong>Age: </strong>44</p>
+                            <p><strong>Date: </strong> 5/13/2003</p>
+                            <p><strong>County: </strong>Adams</p>
+                            <p><strong>Employer: </strong>S&R Oilfield Construction</p>
+                            <p><strong>Cause of death: </strong>Rig collapse</p>
+                            <p>Amen was raising the mast of a truck-mounted rig when a part of the rig failed and the mast fell onto him, killing him. He worked alongside his father for an oilfield company his father founded. A Fort Morgan native, Amen enjoyed camping and hunting and was survived by a wife and four kids, according to his obituary.</p>
+                            <p><strong>Initial violations: </strong>4</p>
+                            <p><strong>Final violations: </strong>4</p>
+                            <p><strong>Initial fine: </strong>$12,700</p>
+                            <p><strong>Final fine: </strong>$10,795</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=306370172&id=306369679&id=306369562">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'04</td>
+                    <td class="cell vehicle" title="Kenneth Rens" align="center">
+                        <div class="table-content">
+                            <h3>Kenneth Rens</h3>
+                            <p><strong>Age: </strong>57</p>
+                            <p><strong>Date: </strong>2/3/2004</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Jelco</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>Rens worked for a company servicing remote oil and gas wells, which required him to use a snowmobile in winter. He was traveling on a road that had a single, 9-foot path plowed down the middle, with snowbanks on either side, when he met a truck head-on. He swerved into the snowbank, which tossed him back onto the road, where he was run over and killed. His widow filed a wrongful death lawsuit against the company that owned the truck and the company that plowed the road. The suit was settled for undisclosed terms. In addition to his wife, Rens was survived by three daughters, according to his obituary. He was a Marine Corps veteran and Purple Heart recipient.</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><em>no OSHA inspection</em></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell collapse" title="Scott Nelson" align="center">
+                        <div class="table-content">
+                            <h3>Scott Nelson</h3>
+                            <p><strong>Age: </strong>26</p>
+                            <p><strong>Date: </strong>5/31/2004</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Union Drilling</p>
+                            <p><strong>Cause of death: </strong>Rig collapse</p>
+                            <p>Nelson was a floor hand working high up on an oil and gas rig when the rig collapsed. An OSHA report said he "sustained massive trauma" in the fall and was killed. Nelson lived in a small town in Pennsylvania, where he was a member of the Moose Lodge, according to his obituary. He left behind a wife, two daughters and a stepson.</p>
+                            <p><strong>Initial violations: </strong>6</p>
+                            <p><strong>Final violations: </strong>6</p>
+                            <p><strong>Initial fine: </strong>$28,800</p>
+                            <p><strong>Final fine: </strong>$22,725</p>
+                            <p><a href="http://www.observertoday.com/page/content.detail/id/25987/SCOTT-NELSON-.html">Obituary</a> &bull; <a href="http://www.craigdailypress.com/news/2004/jun/01/drilling_rig_collapses/">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=307522227&id=307522235">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell collapse" title="Randall Taylor" align="center">
+                        <div class="table-content">
+                            <h3>Randall Taylor</h3>
+                            <p><strong>Age: </strong>62</p>
+                            <p><strong>Date: </strong>8/13/2004</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Wolverine Drilling</p>
+                            <p><strong>Cause of death: </strong>Rig collapse</p>
+                            <p>Taylor worked on a drilling rig that was trying to hoist 135 tons of drill pipe when it failed, sending the rig's crown tumbling down. It struck Taylor, killing him. Taylor's widow filed a lawsuit against various subcontractors that assembled or inspected the rig. The suit was settled for undisclosed terms. Taylor was also survived by two daughters and four grandchildren.</p>
+                            <p><strong>Initial violations: </strong>5</p>
+                            <p><strong>Final violations: </strong>5</p>
+                            <p><strong>Initial fine: </strong>$7,200</p>
+                            <p><strong>Final fine: </strong>$4,560</p>
+                            <p><a href="http://www.legacy.com/obituaries/statesman/obituary.aspx?n=randall-taylor&pid=2533293">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=307524439">OSHA report</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'05</td>
+                    <td class="cell fall" title="Larry Hill" align="center">
+                        <div class="table-content">
+                            <h3>Larry Hill</h3>
+                            <p><strong>Age: </strong>42</p>
+                            <p><strong>Date: </strong>11/7/2005</p>
+                            <p><strong>County: </strong>Rio Blanco</p>
+                            <p><strong>Employer: </strong>Union Drilling</p>
+                            <p><strong>Cause of death: </strong>Fall</p>
+                            <p>Hill was 60 feet up in a drilling rig, working on a long string of drill pipe. He fell and was killed. He was buried at a cemetery in his hometown of Moab, Utah.</p>
+                            <p><strong>Initial violations: </strong>2</p>
+                            <p><strong>Final violations: </strong>2</p>
+                            <p><strong>Initial fine: </strong>$30,000</p>
+                            <p><strong>Final fine: </strong>$19,900</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=309000990">OSHA report</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell electrocution" title="Zac Mitchek" align="center">
+                        <div class="table-content">
+                            <h3>Zac Mitchek</h3>
+                            <p><strong>Age: </strong>42</p>
+                            <p><strong>Date: </strong>11/25/2005</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Patterson-UTI Drilling Company</p>
+                            <p><strong>Cause of death: </strong>Electrocution</p>
+                            <p>Mitchek was performing maintenance on a compressor unit at a drilling rig. He made contact with a live electrical circuit and was killed.</p>
+                            <p><strong>Initial violations: </strong>2</p>
+                            <p><strong>Final violations: </strong>2</p>
+                            <p><strong>Initial fine: </strong>$14,000</p>
+                            <p><strong>Final fine: </strong>$11,900</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=309001196&id=309001188">OSHA report</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'06</td>
+                    <td class="cell asphyxiation" title="Joshua Arvidson" align="center">
+                        <div class="table-content">
+                            <h3>Joshua Arvidson</h3>
+                            <p><strong>Age: </strong>24</p>
+                            <p><strong>Date: </strong>1/25/2006</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>CalFrac Well Services</p>
+                            <p><strong>Cause of death: </strong>Asphyxiation</p>
+                            <p>Arvidson was an employee of a well services company. While on the job, he entered a trailer holding sand using in fracking operations and became engulfed. The OSHA fine related to his accident was the largest an oil and gas company has paid in Colorado for a death since at least 2000. Arvidson was an Army veteran who served two tours in Iraq, according to his obituary. He was survived by his wife and a daughter who was 7 months old at the time of his death.</p>
+                            <p><strong>Initial violations: </strong>7</p>
+                            <p><strong>Final violations: </strong>5</p>
+                            <p><strong>Initial fine: </strong>$40,425</p>
+                            <p><strong>Final fine: </strong>$27,825</p>
+                            <p><a href="http://myjohnstownbreeze.com/index.php?option=com_content&view=article&id=1477:Milliken%20resident,%20U.S.%20Army%20veteran,%20passes%20away%20at%20age%2024">Article</a>
+                                <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=309002335">OSHA report</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell homicide" title="Paul Graves" align="center">
+                        <div class="table-content">
+                            <h3>Paul Graves</h3>
+                            <p><strong>Age: </strong>40</p>
+                            <p><strong>Date: </strong>4/15/2006</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Nabors Drilling</p>
+                            <p><strong>Cause of death: </strong>Homicide</p>
+                            <p>Graves worked for a drilling company and lived at a company-owned trailer. After a night out, he was attacked by a coworker who also lived at the trailer. Graves died from his injuries a year later, and the co-worker was eventually convicted of reckless manslaughter. Graves' mother and sister filed a lawsuit alleging that the company knew about the co-worker's violent tendencies. That suit was dismissed when the company agreed to pay a workers' compensation death benefit to Graves' family, according to court papers.</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><a href="http://www.denverpost.com/frontpage/ci_3953427">Article</a> &bull; <a href="http://www.gjsentinel.com/news/articles/suspect_pleads_guilty_sentence">Article</a></p>
+                            <p><em>no OSHA inspection</em></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell crush" title="Wesley M. Rodrigues" align="center">
+                        <div class="table-content">
+                            <h3>Wesley M. Rodrigues</h3>
+                            <p><strong>Age: </strong>30</p>
+                            <p><strong>Date: </strong>10/23/2006</p>
+                            <p><strong>County: </strong>Las Animas</p>
+                            <p><strong>Employer: </strong>Accurate Welding</p>
+                            <p><strong>Cause of death: </strong>Crushed between equipment</p>
+                            <p>Rodrigues was a welder working for a subcontractor to a subcontractor on an oil and gas development site. He was building a compressor station at the site when a backhoe operator swung heavy pipes toward him, crushing him. Rodrigues's widow filed a lawsuit against a number of subcontractors working at the site. The case settled one month before it was scheduled to go to trial.</p>
+                            <p><strong>Initial violations: </strong>3</p>
+                            <p><strong>Final violations: </strong>3</p>
+                            <p><strong>Initial fine: </strong>$9,375</p>
+                            <p><strong>Final fine: </strong>$2,300</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=309197077&id=309197069">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell vehicle" title="Philip Smith" align="center">
+                        <div class="table-content">
+                            <h3>Philip Smith</h3>
+                            <p><strong>Age: </strong>44</p>
+                            <p><strong>Date: </strong>11/6/2006</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Easy Street Crane Service</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>Smith worked for a trucking company that delivered water to oil and gas wells. He stepped out of his truck to chain up the tires, and the truck rolled over him and killed him. Smith had been raised in Colorado Springs and was a long-time employee of a credit union before joining the oil and gas industry. He was survived by his wife and three children.</p>
+                            <p><strong>Initial violations: </strong>3</p>
+                            <p><strong>Final violations: </strong>3</p>
+                            <p><strong>Initial fine: </strong>$4,500</p>
+                            <p><strong>Final fine: </strong>$3,000</p>
+                            <p><a href="http://www.legacy.com/obituaries/gazette/obituary.aspx?page=lifestory&pid=20003919">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310463310">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Jacob Farmer" align="center">
+                        <div class="table-content">
+                            <h3>Jacob Farmer</h3>
+                            <p><strong>Age: </strong>19</p>
+                            <p><strong>Date: </strong>11/16/2006</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Leed Energy Services</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>Farmer was working on a rig when a heavy pulley on the rig failed and a part fell, hitting Farmer on the head and killing him. He was survived by a daughter, who was 18 months old at the time of the accident. His father told a newspaper that Farmer dreamed of being a professional golfer.</p>
+                            <p><strong>Initial violations: </strong>9</p>
+                            <p><strong>Final violations: </strong>8</p>
+                            <p><strong>Initial fine: </strong>$19,250</p>
+                            <p><strong>Final fine: </strong>$15,075</p>
+                            <p><a href="http://www.taborfuneralhome.com/fh/obituaries/obituary.cfm?o_id=784843&fh_id=13067">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310463435&id=310463401&id=310463427">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell explosion" title="Ricky Erb" align="center">
+                        <div class="table-content">
+                            <h3>Ricky Erb</h3>
+                            <p><strong>Age: </strong>19</p>
+                            <p><strong>Date: </strong>11/27/2006</p>
+                            <p><strong>County: </strong>Mesa</p>
+                            <p><strong>Employer: </strong>Schneider Energy Services</p>
+                            <p><strong>Cause of death: </strong>Explosion/fire</p>
+                            <p>Erb and two co-workers were cutting into an old gas pipeline that they had been told was abandoned and not under pressure. The line was pressurized, though, and the explosive release of gas struck Erb and threw him backward, causing blunt force trauma that killed him. Erb's father, grandfather and sister all worked in the oil and gas industry. "There's always a risk," his mother told the Grand Junction Daily Sentinel, "and there is always a risk with any job."</p>
+                            <p><strong>Initial violations: </strong>6</p>
+                            <p><strong>Final violations: </strong>4</p>
+                            <p><strong>Initial fine: </strong>$12,450</p>
+                            <p><strong>Final fine: </strong>$8,725</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310463526&id=310463518">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'07</td>
+                    <td class="cell vehicle" title="Name unavailable" align="center">
+                        <div class="table-content">
+                            <h3><em>Name unavailable</em></h3>
+                            <p><strong>Age: </strong><em>unavailable</em></p>
+                            <p><strong>Date: </strong>2/27/2007</p>
+                            <p><strong>County: </strong>Las Animas</p>
+                            <p><strong>Employer: </strong>Ricway Roustabout & Water Services</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>The worker was a truck driver hired to haul waste water from a gas well. The truck was going down a steep hill when it skidded and went over an embankment. The driver was either thrown from the vehicle or jumped and was killed. An OSHA inspection found the truck did not have adequate maintenance or inspection records, and its brakes had been worked on a couple weeks before the accident.</p>
+                            <p><strong>Initial violations: </strong>1</p>
+                            <p><strong>Final violations: </strong>1</p>
+                            <p><strong>Initial fine: </strong>$2,100</p>
+                            <p><strong>Final fine: </strong>$2,100</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310588405">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Joseph Buchanan Jr." align="center">
+                        <div class="table-content">
+                            <h3>Joseph Buchanan Jr.</h3>
+                            <p><strong>Age: </strong>34</p>
+                            <p><strong>Date: </strong>7/19/2007</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>J And E Enterprises</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>Buchanan was an independent contractor working on a drilling rig. A piece of equipment fell from above and hit him, killing him. Buchanan was from Louisiana. He was survived by a wife and two children, all of whom were living with him temporarily in Colorado at the time of this death.</p>
+                            <p><strong>Initial violations: </strong>9</p>
+                            <p><strong>Final violations: </strong>8</p>
+                            <p><strong>Initial fine: </strong>$17,200</p>
+                            <p><strong>Final fine: </strong>$9,750</p>
+                            <p><a href="http://www.legacy.com/obituaries/shreveporttimes/obituary.aspx?n=joseph-floyd-buchanan&pid=91370579&">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310468137&id=310468111&id=310468145&id=310468277&id=310468152&id=310468269">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell explosion" title="Reyes Garcia" align="center">
+                        <div class="table-content">
+                            <h3>Reyes Garcia</h3>
+                            <p><strong>Age: </strong>31</p>
+                            <p><strong>Date: </strong>7/25/2007</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Leed Energy Services</p>
+                            <p><strong>Cause of death: </strong>Explosion/fire</p>
+                            <p>Garcia was working at pump on an oil and gas site when a nearby piece of equipment sparked a flash fire in a cloud of leaking gas. Garcia suffered burns over 85 percent of his body and died six weeks later. His widow sued the subcontractor managing the site and won a $6.5 million jury verdict, the largest ever awarded against an oil and gas company in Colorado for a worker's death. Garcia's obituary described him as a family man who loved going on bike rides with his daughter.</p>
+                            <p><strong>Initial violations: </strong>3</p>
+                            <p><strong>Final violations: </strong>3</p>
+                            <p><strong>Initial fine: </strong>$7,500</p>
+                            <p><strong>Final fine: </strong>$6,000</p>
+                            <p><a href="http://www.denverpost.com/news/ci_25308555/greeley-woman-wins-judgment-after-explosion-killed-husband">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310468103">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Name unavailable" align="center">
+                        <div class="table-content">
+                            <h3><em>Name unavailable</em></h3>
+                            <p><strong>Age: </strong><em>unavailable</em></p>
+                            <p><strong>Date: </strong>8/19/2007</p>
+                            <p><strong>County: </strong>Rio Blanco</p>
+                            <p><strong>Employer: </strong>Centerfire Trucking</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>The worker was driving a truck with a winch on the back and towing a flatbed trailer to which a "snatch block" on the winch cable was attached. While the truck was driving away from an oil and gas site, the winch kicked on, tightening the cable and causing the block to break free from the trailer. The block flew threw the rear window of the truck, striking the worker in the head and killing the worker.</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310469044&id=310469010&id=310468996&id=310469002&id=310469028">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Name unavailable" align="center">
+                        <div class="table-content">
+                            <h3><em>Name unavailable</em></h3>
+                            <p><strong>Age: </strong><em>unavailable</em></p>
+                            <p><strong>Date: </strong>10/4/2007</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Bratton Mechanical and Welding</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>The worker, a welder, was working with the operator of a front-end loader to remove a motor from a piece of equipment at an oil and gas site. The boom broke free from the front-end loader and crushed the worker. An OSHA investigation found that the front-end loader was not properly maintained.</p>
+                            <p><strong>Initial violations: </strong>5</p>
+                            <p><strong>Final violations: </strong>3</p>
+                            <p><strong>Initial fine: </strong>$25,200</p>
+                            <p><strong>Final fine: </strong>$8,200</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310470091&id=310470075&id=310470109&id=310470067">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'08</td>
+                    <td class="cell vehicle" title="Name unavailable" align="center">
+                        <div class="table-content">
+                            <h3><em>Name unavailable</em></h3>
+                            <p><strong>Age: </strong>45</p>
+                            <p><strong>Date: </strong>1/29/2008</p>
+                            <p><strong>County: </strong>Las Animas</p>
+                            <p><strong>Employer: </strong>Santa Clara LLC</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>The worker was a truck driver hired to remove water produced at natural gas wells. The truck was fully loaded and twice failed to make it up a hill. After the second try, the truck slid backwards down the hill, then rolled off the road. The driver was partially ejected during the accident and killed. The weather was cold and windy, with areas of blowing snow across the road.</p>
+                            <p><strong>Initial violations: </strong>1</p>
+                            <p><strong>Final violations: </strong>1</p>
+                            <p><strong>Initial fine: </strong>$2,500</p>
+                            <p><strong>Final fine: </strong>$1,500</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310595103">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell crush" title="Christopher Clark" align="center">
+                        <div class="table-content">
+                            <h3>Christopher Clark</h3>
+                            <p><strong>Age: </strong>26</p>
+                            <p><strong>Date: </strong>3/27/2008</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Patterson-UTI Drilling Company</p>
+                            <p><strong>Cause of death: </strong>Crushed between equipment</p>
+                            <p>Clark was working on an oil rig and directing a flatbed truck up a ramp. He was crushed between the truck and a platform on the rig. He was survived by a son. "He had a smile that lit up the room," his obituary read.</p>
+                            <p><strong>Initial violations: </strong>1</p>
+                            <p><strong>Final violations: </strong>1</p>
+                            <p><strong>Initial fine: </strong>$2,500</p>
+                            <p><strong>Final fine: </strong>$1,500</p>
+                            <p><a href="http://www.greeleytribune.com/article/20080328/NEWS/5314788">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=310472410">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell vehicle" title="Name unavailable" align="center">
+                        <div class="table-content">
+                            <h3><em>Name unavailable</em></h3>
+                            <p><strong>Age: </strong><em>unavailable</em></p>
+                            <p><strong>Date: </strong>4/18/2008</p>
+                            <p><strong>County: </strong>Rio Blanco</p>
+                            <p><strong>Employer: </strong>Mountain West Oil Field Service & Supply</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>The worker was a driving a large pump truck down a hill from a drilling site. He lost control of the truck, which rolled and ejected him. He was killed when the truck rolled over him.</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=311903090">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell electrocution" title="Javier Perez" align="center">
+                        <div class="table-content">
+                            <h3>Javier Perez</h3>
+                            <p><strong>Age: </strong><em>unavailable</em></p>
+                            <p><strong>Date: </strong>6/11/2008</p>
+                            <p><strong>County: </strong>Logan</p>
+                            <p><strong>Employer: </strong>Sterling Construction Management</p>
+                            <p><strong>Cause of death: </strong>Electrocution</p>
+                            <p>Perez was part of a crew working with a crane to build a new natural gas pipeline. He grabbed a hook on the crane just as another part of the crane made contact with an overhead power line. Perez was electrocuted. An OSHA investigation found that the worker who was supposed to be acting as a spotter was instead tying equipment down on a truck bed, and there were no other designated spotters on site.</p>
+                            <p><strong>Initial violations: </strong>3</p>
+                            <p><strong>Final violations: </strong>2</p>
+                            <p><strong>Initial fine: </strong>$17,100</p>
+                            <p><strong>Final fine: </strong>$17,100</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=311904536&id=311904528&id=311904494">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell vehicle" title="Steven Raymond Bartlett" align="center">
+                        <div class="table-content">
+                            <h3>Steven Raymond Bartlett</h3>
+                            <p><strong>Age: </strong>50</p>
+                            <p><strong>Date: </strong>9/7/2008</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Enterprise Products Company</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>Bartlett worked for a company that owned a natural gas pipeline in Colorado. Part of his job was to aerially inspect the pipeline. He and a pilot were flying over the pipeline when their plane crashed in the mountains near the Utah border. Bartlett's widow and three daughters filed a lawsuit against the aviation company, alleging that the pilot had no experience flying at high altitude or flying for pipeline inspections in mountainous terrain. The lawsuit was settled.</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><a href="http://www.deseretnews.com/article/700257274/2-die-in-plane-crash-near-Utah-Colorado-border.html?pg=all">Article</a></p>
+                            <p><em>no OSHA inspections</em></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Talliesin Dodd Hayden" align="center">
+                        <div class="table-content">
+                            <h3>Talliesin Dodd Hayden</h3>
+                            <p><strong>Age: </strong>38</p>
+                            <p><strong>Date: </strong>9/8/2008</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Halliburton Energy Services</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>Hayden was part of a crew removing a string of tools from a well when a cable snapped and a 29-foot, 100-pound tube fell on his head, killing him. He was a native of Montana who moved to Colorado to work in the oil and gas industry. Hayden enjoyed riding his motorcycle and playing drums in several bands around his hometown of Butte, Mont., according to his obituary. He was survived by his wife, a son and two stepchildren.</p>
+                            <p><strong>Initial violations: </strong>1</p>
+                            <p><strong>Final violations: </strong>1</p>
+                            <p><strong>Initial fine: </strong>$5,000</p>
+                            <p><strong>Final fine: </strong>$3,500</p>
+                            <p><a href="http://www.legacy.com/obituaries/gjsentinel/obituary.aspx?pid=117310059">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=311908008&id=311907836">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell vehicle" title="Michael Foraker" align="center">
+                        <div class="table-content">
+                            <h3>Michael Foraker</h3>
+                            <p><strong>Age: </strong>51</p>
+                            <p><strong>Date: </strong>9/27/2008</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Tri-State Trucking</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>Foraker was a truck driver for a company often hired to move heavy equipment to and from drilling sites. He was killed when his truck failed to make a turn while driving away from a rig and rolled down a steep hill. Foraker was a native of Grand Junction whose obituary said he, "enjoyed his 1982 Peterbilt, coin collecting, moving rigs, carpentry, eagles, cat fishing and eating Almond M & M's in color order." He was survived by his wife, a daughter and two stepsons.</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><a href="http://www.legacy.com/obituaries/gjsentinel/obituary.aspx?n=michael-phillip-foraker&pid=118172817">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=311908081">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Jeffrey Byer" align="center">
+                        <div class="table-content">
+                            <h3>Jeffrey Byer</h3>
+                            <p><strong>Age: </strong>40</p>
+                            <p><strong>Date: </strong>10/31/2008</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Ensign Drilling</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>Byer was a truck driver who was unloading two pipe racks that weighed a combined 3,500 pounds. One of the racks fell off the truck and crushed him. Byer's girlfriend was the driver of a pilot car that was on scene at the time, according to a news report.</p>
+                            <p><strong>Initial violations: </strong>1</p>
+                            <p><strong>Final violations: </strong>1</p>
+                            <p><strong>Initial fine: </strong>$5,000</p>
+                            <p><strong>Final fine: </strong>$5,000</p>
+                            <p><a href="http://www.greeleytribune.com/article/20081031/NEWS01/810319914">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=311908628&id=311908784">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'09</td>
+                </tr>
+                <tr>
+                    <td class="date">'10</td>
+                </tr>
+                <tr>
+                    <td class="date">'11</td>
+                </tr>
+                <tr>
+                    <td class="date">'12</td>
+                    <td class="cell vehicle" title="Name unavailable" align="center">
+                        <div class="table-content">
+                            <h3><em>Name unavailable</em></h3>
+                            <p><strong>Age: </strong><em>unavailable</em></p>
+                            <p><strong>Date: </strong>1/9/2012</p>
+                            <p><strong>County: </strong>La Plata</p>
+                            <p><strong>Employer: </strong>Serrano's Inc</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>The worker was a truck driver transporting wastewater from oil and gas production. The worker's truck's brakes failed and the truck rolled, killing the worker. Though the accident is clearly oil and gas-related, OSHA's accident report logs the fatality under the industry code for "inland water passenger transportation."</p>
+                            <p><strong>Initial violations: </strong>1</p>
+                            <p><strong>Final violations: </strong>1</p>
+                            <p><strong>Initial fine: </strong>$7,000</p>
+                            <p><strong>Final fine: </strong>$6,500</p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=111310.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell explosion" title="Randy Mathews" align="center">
+                        <div class="table-content">
+                            <h3>Randy Mathews</h3>
+                            <p><strong>Age: </strong>42</p>
+                            <p><strong>Date: </strong>6/25/2012</p>
+                            <p><strong>County: </strong>La Plata</p>
+                            <p><strong>Employer: </strong>Elkhorn Construction</p>
+                            <p><strong>Cause of death: </strong>Explosion/fire</p>
+                            <p>Mathews was working at a compression station where natural gas is collected from several wells and readied for distribution. An explosion killed him and injured two others. A subsequent investigation found that a valve had been left mistakenly closed, leading to a build up of pressure that ruptured a pipe. Mathews had previously served with the Cortez Police Department, according to his obituary. He was a volunteer firefighter and a football coach in Mancos. He was survived by his wife and four children.</p>
+                            <p><strong>Initial violations: </strong>6</p>
+                            <p><strong>Final violations: </strong>3</p>
+                            <p><strong>Initial fine: </strong>$42000</p>
+                            <p><strong>Final fine: </strong>$21000</p>
+                            <p><a href="http://obituaries.durangoherald.com/obituaries/durangoherald/obituary.aspx?n=randy-dale-mathews&pid=172663160">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=530858.015&id=743801.015&id=531358.015&id=521219.015&id=531179.015&id=531038.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell fall" title="Adleberto Pena" align="center">
+                        <div class="table-content">
+                            <h3>Adleberto Pena</h3>
+                            <p><strong>Age: </strong>44</p>
+                            <p><strong>Date: </strong>6/28/2102</p>
+                            <p><strong>County: </strong>Archuleta</p>
+                            <p><strong>Employer: </strong>Key Energy Services</p>
+                            <p><strong>Cause of death: </strong>Fall</p>
+                            <p>Pena was working on the top of a rig's mast when he lost his balance and fell to the ground.</p>
+                            <p><strong>Initial violations: </strong>2</p>
+                            <p><strong>Final violations: </strong>1</p>
+                            <p><strong>Initial fine: </strong>$14,000</p>
+                            <p><strong>Final fine: </strong>$7,000</p>
+                            <p><a href="http://weeklytoll.blogspot.com/2013/02/the-weekly-toll-death-in-american_19.html">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=532238.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell explosion" title="Brian John Wallace" align="center">
+                        <div class="table-content">
+                            <h3>Brian John Wallace</h3>
+                            <p><strong>Age: </strong>60</p>
+                            <p><strong>Date: </strong>8/15/2012</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>BGH Gas Test Operating</p>
+                            <p><strong>Cause of death: </strong>Explosion/fire</p>
+                            <p>Wallace was one of several subcontractors from different companies working on a well site. He offered to help a crew trying to install a riser on a well pipe. As he used a jack to lift up the pipe, it exploded, throwing him 45 feet and killing him. His family later filing a lawsuit saying that Wallace was never told the pipe was pressurized. The lawsuit settled. Wallace was survived by his wife, two daughters and six grandchildren. His obituary said he enjoyed golfing, fishing and camping with his family.</p>
+                            <p><strong>Initial violations: </strong>3</p>
+                            <p><strong>Final violations: </strong>3</p>
+                            <p><strong>Initial fine: </strong>$12,600</p>
+                            <p><strong>Final fine: </strong>$12,600</p>
+                            <p><a href="http://www.crandallfhevanston.com/obits/obituary.php?id=198610">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=614318.015&id=580518.015&id=614419.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'13</td>
+                    <td class="cell explosion" title="Jonathan Herod" align="center">
+                        <div class="table-content">
+                            <h3>Jonathan Herod</h3>
+                            <p><strong>Age: </strong>49</p>
+                            <p><strong>Date: </strong>1/3/2013</p>
+                            <p><strong>County: </strong>Moffat</p>
+                            <p><strong>Employer: </strong>Herod Industries</p>
+                            <p><strong>Cause of death: </strong>Explosion/fire</p>
+                            <p>Herod was working at a well site trying to pump wastewater produced during fracking into a storage tank. The tank exploded, killing him. The Moffat County Sheriff's office said it appeared that valves were frozen in the cold and that workers were using a propane heater to thaw them when the explosion occurred. Herod was born in Denver and had lived in Craig since high school. He was survived by two daughters and a grandson, according to his obituary.</p>
+                            <p><strong>Initial violations: </strong>6</p>
+                            <p><strong>Final violations: </strong>6</p>
+                            <p><strong>Initial fine: </strong>$16,800</p>
+                            <p><strong>Final fine: </strong>$16,800</p>
+                            <p><a href="http://www.denverpost.com/ci_22305748/craig-man-killed-oil-rig-explosion">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=811861.015&id=810321.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'14</td>
+                    <td class="cell struck" title="Adam Kujawa" align="center">
+                        <div class="table-content">
+                            <h3>Adam Kujawa</h3>
+                            <p><strong>Age: </strong>28</p>
+                            <p><strong>Date: </strong>1/9/2014</p>
+                            <p><strong>County: </strong>Baca</p>
+                            <p><strong>Employer: </strong>Greene's Energy Group</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>Kujawa died from head trauma after being struck by an object on an oil and gas site in southeastern Colorado. He was a native of Texas and was survived by a daughter.</p>
+                            <p><strong>Initial violations: </strong>5</p>
+                            <p><strong>Final violations: </strong>3</p>
+                            <p><strong>Initial fine: </strong>$18,400</p>
+                            <p><strong>Final fine: </strong>$17,000</p>
+                            <p><a href="http://www.legacy.com/obituaries/houstonchronicle/obituary.aspx?pid=169118592">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=955793.015&id=955711.015&id=955800.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell gauging" title="Joe Ray Sherman" align="center">
+                        <div class="table-content">
+                            <h3>Joe Ray Sherman</h3>
+                            <p><strong>Age: </strong>51</p>
+                            <p><strong>Date: </strong>3/3/2014</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Now or Never Trucking</p>
+                            <p><strong>Cause of death: </strong>Tank gauging</p>
+                            <p>Sherman worked for a trucking company and was taking a sample from an open hatch atop an oil storage tank when he lost consciousness and fell backward. He was found dangling by his sweatshirt, which was caught on the tank's catwalk. The coroner initially ruled he died from heart disease, but, months later, his death became the earliest in Colorado to be linked to the inhalation of toxic fumes while conducting "tank gauging." Companies did not provide workers conducting tank gauging with respirators that could protect them from the fumes. Sherman was a native of Texas who enjoyed singing and playing the guitar. He was survived by four children and 10 grandchildren. In his obituary, his family thanked his employer, Now or Never Trucking, for its care and support.</p>
+                            <p><strong>Initial violations: </strong>3</p>
+                            <p><strong>Final violations: </strong>3</p>
+                            <p><strong>Initial fine: </strong>$7700</p>
+                            <p><strong>Final fine: </strong>$5775</p>
+                            <p><a href="http://www.denverpost.com/news/ci_28136543/colorado-oil-and-gas-workers-fell-victim-little">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=962598.015&id=962422.015&id=962452.015&id=962582.015&id=962590.015&id=962357.015&id=962611.015&id=962357">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell gauging" title="John McNulty" align="center">
+                        <div class="table-content">
+                            <h3>John McNulty</h3>
+                            <p><strong>Age: </strong>57</p>
+                            <p><strong>Date: </strong>6/24/2014</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>DJ Basin Transport</p>
+                            <p><strong>Cause of death: </strong>Tank gauging</p>
+                            <p>McNulty worked for a trucking company and lost consciousness while on a catwalk between oil storage tanks. His death has been linked to inhalation of toxic fumes during a procedure known as tank gauging. McNulty was an Army veteran who enjoyed hunting and playing volleyball with his family, according to an obituary that also described him as, "the ultimate Spoons player."</p>
+                            <p><strong>Initial violations: </strong>8</p>
+                            <p><strong>Final violations: </strong>6</p>
+                            <p><strong>Initial fine: </strong>$31,600</p>
+                            <p><strong>Final fine: </strong>$20,800</p>
+                            <p><a href="http://www.denverpost.com/news/ci_29511253/greeley-mans-death-tank-gauging-at-oil-rig">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=984593.015&id=982339.015&id=984608.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell gauging" title="Jim Freemyer" align="center">
+                        <div class="table-content">
+                            <h3>Jim Freemyer</h3>
+                            <p><strong>Age: </strong>59</p>
+                            <p><strong>Date: </strong>7/13/2014</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Now or Never Trucking</p>
+                            <p><strong>Cause of death: </strong>Tank gauging</p>
+                            <p>Freemyer was a truck driver who was found slumped over an open hatch at the top of an oil storage tank. His death was one of three in Colorado linked to the inhalation of toxic fumes during a process called "tank gauging." Freemyer had become dizzy and disoriented while gauging a storage tank three weeks earlier. Freemyer asked for a respirator to wear while tank gauging, but his boss told him he would have to pay for it. After Freemyer's death, his employer fought his widow's application for workers' compensation death benefits, but a judge approved the payments. Freemyer was an Army veteran who was also survived by four children and two grandchildren.</p>
+                            <p><strong>Initial violations: </strong>6</p>
+                            <p><strong>Final violations: </strong>4</p>
+                            <p><strong>Initial fine: </strong>$29,545</p>
+                            <p><strong>Final fine: </strong>$18,000</p>
+                            <p><a href="http://www.obitsforlife.com/obituary/946137/Freemyer-Jim.php">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=985693.015&id=985869.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell vehicle" title="Christopher Farrow" align="center">
+                        <div class="table-content">
+                            <h3>Christopher Farrow</h3>
+                            <p><strong>Age: </strong>48</p>
+                            <p><strong>Date: </strong>10/9/2014</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Petroleum Field Services</p>
+                            <p><strong>Cause of death: </strong>Vehicle accident</p>
+                            <p>Farrow was a surveyor who was working in a roadway when he was hit and killed by a passing truck. His widow filed a lawsuit against the truck driver and his insurance company. A trial in the case is pending. Farrow was a singer-songwriter who appeared in multiple bands in the Denver area. He was survived by his wife and a son.</p>
+                            <p><strong>Initial violations: </strong>0</p>
+                            <p><strong>Final violations: </strong>0</p>
+                            <p><strong>Initial fine: </strong>$0</p>
+                            <p><strong>Final fine: </strong>$0</p>
+                            <p><a href="http://www.greeleytribune.com/news/14762952-113/2014-deaths-on-weld-county-roads#">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=1000955.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell struck" title="Shane Hill" align="center">
+                        <div class="table-content">
+                            <h3>Shane Hill</h3>
+                            <p><strong>Age: </strong>34</p>
+                            <p><strong>Date: </strong>10/21/2014</p>
+                            <p><strong>County: </strong>Garfield</p>
+                            <p><strong>Employer: </strong>Cyclone Drilling</p>
+                            <p><strong>Cause of death: </strong>Struck by equipment</p>
+                            <p>Hill was working on an oil and gas rig that was pressuring up to begin drilling. A 2-inch fitting blew off a pipe and struck him in the head, killing him. In a subsequent report to state regulators, his employer pushed responsibility for the accident onto Hill, claiming he hadn't tightened the fitting enough. Hill loved camping and playing disc golf. He was survived by his wife and three children.</p>
+                            <p><strong>Initial violations: </strong>3</p>
+                            <p><strong>Final violations: </strong>2</p>
+                            <p><strong>Initial fine: </strong>$13,545</p>
+                            <p><strong>Final fine: </strong>$9,805</p>
+                            <p><a href="http://www.legacy.com/obituaries/gjsentinel/obituary.aspx?pid=172982045">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=1005350.015&id=1005719.015&id=1005719">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                    <td class="cell explosion" title="Matthew Smith" align="center">
+                        <div class="table-content">
+                            <h3>Matthew Smith</h3>
+                            <p><strong>Age: </strong>36</p>
+                            <p><strong>Date: </strong>11/13/2014</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong>Halliburton Energy Services</p>
+                            <p><strong>Cause of death: </strong>Explosion/fire</p>
+                            <p>Smith was working with a crew at an oil and gas well in sub-zero weather. The crew was using a blowtorch to unthaw a frozen water line when the line exploded, killing Smith and injuring two other workers. Smith grew up in Wyoming, where his father worked in the oil and gas industry. He was a high school and collegiate rodeo star. He was survived by a daughter.</p>
+                            <p><strong>Initial violations: </strong>1</p>
+                            <p><strong>Final violations: </strong>1</p>
+                            <p><strong>Initial fine: </strong>$7,000</p>
+                            <p><strong>Final fine: </strong>$7,000</p>
+                            <p><a href="http://www.obitsforlife.com/obituary/1002371/Smith-Matthew.php">Obituary</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=1057422.015&id=1012266.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="date">'15</td>
+                    <td class="cell explosion" title="Reuben Camacho" align="center">
+                        <div class="table-content">
+                            <h3>Reuben Camacho</h3>
+                            <p><strong>Age: </strong>26</p>
+                            <p><strong>Date: </strong>1/14/2015</p>
+                            <p><strong>County: </strong>Weld</p>
+                            <p><strong>Employer: </strong><em>unavailable</em></p>
+                            <p><strong>Cause of death: </strong>Explosion/fire</p>
+                            <p>Camacho was using a welding torch in a trailer used to haul oil from wells. The torch ignited residual oil inside the tank, causing an explosion that killed Camacho.</p>
+                            <p><strong>Initial violations: </strong>2</p>
+                            <p><strong>Final violations: </strong>2</p>
+                            <p><strong>Initial fine: </strong>$5600</p>
+                            <p><strong>Final fine: </strong>$5600</p>
+                            <p><a href="http://www.coloradoan.com/story/news/2015/01/16/brighton-man-identified-fatal-weld-explosion/21866969/">Article</a></p>
+                            <p><a href="https://www.osha.gov/pls/imis/establishment.inspection_detail?id=1021628.015&id=1040477.015">OSHA inspection</a></p>
+                        </div>
+                        <!-- <img id="chart-figure" src="chart_figure.png" /> -->
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="large-7 medium-7 columns end">
+            <div id="profile-container"></div>
+        </div>
+    </div>
+    <script>
+    var table = document.getElementById("profile");
+    if (table != null) {
+        for (var i = 0; i < table.rows.length; i++) {
+            for (var j = 0; j < table.rows[i].cells.length; j++)
+                table.rows[i].cells[j].onclick = function() {
+                    tableText(this);
+                };
+        }
+    };
+
+    // Loop through and get the profiles
+    function tableText(tableCell) {
+        document.getElementById("profile-container").innerHTML = tableCell.innerHTML;
+    };
+
+    // Highlight table cells related to fatality categories on legend click
+    var classname = document.getElementsByClassName("click-type");
+
+    var typeClick = function() {
+        var elems = document.querySelectorAll(".cell");
+
+        [].forEach.call(elems, function(el) {
+            el.classList.remove("cell-highlight");
+        });
+        var type = this.getAttribute("data-type");
+        var cells = document.getElementsByClassName(type),
+            i = cells.length;
+        console.log(cells);
+        while (i--) {
+            cells[i].classList.add("cell-highlight");
+        }
+    };
+    console.log(classname);
+    for (var i = 0; i < classname.length; i++) {
+        classname[i].addEventListener('click', typeClick, false);
+    };
+    </script>
+</body>
+
+</html>

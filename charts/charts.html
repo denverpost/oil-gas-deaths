@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>Oil and Gas Worker Fatalities Charts</title>
+    <!-- Load c3.css -->
+    <link href="./css/c3.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+    <style type="text/css">
+    .source {
+        font-style: italic;
+        text-align: right;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- FATALITIES BY STATE BAR CHART -->
+    <h3>U.S. oil and gas worker fatalities 2003-14</h3>
+    <p>From 2003 to 2014, more than 1,300 oil and gas workers have been killed on the job. With 45 fatalities in that time period, Colorado ranks seventh in the country. Texas has the most worker deaths, with 538 killed on the job. <em>Note here on difficulty of pinning these figures down with link to sidebar story about that.</em></p>
+    <div style="height: 400px;" id="bar-fatalities"></div>
+    <p class="source">Source: Bureau of Labor Statistics, Denver Post research</p>
+    <hr>
+    <div>
+        <h3>U.S. oil and gas worker fatalities 2003-14 by demographics, cause</h3>
+        <div style="width: 33%; float: left;" id="donut-age"></div>
+        <div style="width: 33%; float: left;" id="donut-race"></div>
+        <div style="width: 33%; float: left;" id="donut-type"></div>
+        <p class="source">Source: Bureau of Labor Statistics, Denver Post research</p>
+    </div>
+    <hr style="clear: left;">
+    <div>
+        <h3>Fatality rates by average rig count</h3>
+        <p>These charts plot the average rig count in the United States (left) and Colorado (right) from 2003-14 and the oil and gas worker fatality rate per 100 rigs over that time period.</p>
+        <div style="width: 50%; float:left;">
+            <h3>U.S. oil and gas worker fatalities by rig count</h3>
+            <div style="height: 400px;" id="bar-fatalities-rate"></div>
+        </div>
+        <div style="width: 50%; float: right;">
+            <h3>Colorado oil and gas worker fatalities by rig count</h3>
+            <div style="height: 400px;" id="bar-fatalities-rate-colorado"></div>
+        </div>
+        <p class="source">Source: Baker Hughes, Denver Post research</p>
+    </div>
+    <hr>
+    <div>
+        <h3>Colorado oil and gas worker fatality rate by OSHA oil and gas inspections</h3>
+        <p>The chart plots the number of OSHA inspections of oil and gas facilities in Colorado from 2003-14 by the rate of fatalities.
+            <div style="height: 400px;" id="bar-osha-inspections-fatalities"></div>
+            <p class="source">Bureau of Labor Statistics, Denver Post research</p>
+    </div>
+    <div>
+        <h3>Hazardous occupations 2014</h3>
+        <p>In 2014, 181 workers in the mining, quarrying and natural gas extraction sector died on the job, making it the ninth most dangerous sector for workers in the country. With 874 on-the-job deaths, construction workers had the highest fatality count. However, when measured by rate per 100,000 workers, the mining, quarrying and natural gas extraction sector ranked second (14.1) behind only the agriculture, forestry, fishing and hunting sector (24.9).
+            <div style="height: 400px;" id="bar-hazardous-occupations"></div>
+            <p class="source">Bureau of Labor Statistics</p>
+    </div>
+    <!-- Load d3.js and c3.js -->
+    <script src="http://d3js.org/d3.v3.min.js " charset="utf-8 "></script>
+    <script src="./js/c3.min.js "></script>
+    <script>
+    // ----- BAR CHART: FATALITIES BY STATE ----- //
+    var barFatalities = c3.generate({
+        bindto: '#bar-fatalities',
+        data: {
+            x: 'x',
+            columns: [
+                ['x', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014'],
+                ['Colorado', 4, 6, 4, 3, 4, 6, 0, 0, 5, 7, 0, 6]
+            ]
+        },
+        type: 'line',
+        axis: {
+            /* x: {
+                type: 'timeseries',
+                tick: {
+                    format: function (x) { return x.getFullYear(); }
+                }
+            } */
+            y: {
+                label: {
+                    text: 'Worker fatalities',
+                    position: 'outer-middle'
+                }
+            }
+        },
+        grid: {
+            x: {
+                show: true
+            },
+            y: {
+                show: true
+            }
+        },
+        legend: {
+            position: 'inset'
+        }
+    });
+
+    setTimeout(function() {
+        barFatalities.load({
+            columns: [
+                ['Texas', 33, 34, 40, 46, 48, 41, 26, 43, 41, 65, 50, 71],
+            ],
+            type: 'line'
+        });
+    }, 3000);
+
+    setTimeout(function() {
+        barFatalities.load({
+            columns: [
+                ['National total', 85, 98, 98, 125, 122, 120, 68, 107, 112, 142, 112, 144],
+            ],
+            type: 'bar'
+        });
+    }, 6000);
+
+    setTimeout(function() {
+        barFatalities.load({
+            columns: [
+                //['Texas', 33, 34, 40, 46, 48, 41, 26, 43, 41, 65, 50, 71],
+                ['Oklahoma', 8, 11, 12, 12, 12, 21, 6, 9, 16, 16, 6, 15],
+                ['Louisiana', 12, 10, 9, 18, 12, 13, 11, 20, 6, 10, 6, 9],
+                ['New Mexico', 7, 5, 3, 7, 11, 4, 0, 3, 7, 5, 10, 13],
+                ['Wyoming', 6, 7, 11, 8, 8, 7, 0, 5, 5, 3, 0, 5],
+                ['North Dakota', 0, 0, 0, 0, 0, 0, 4, 0, 10, 14, 12, 8],
+                //['Kansas', 5, 3, 0, 8, 4, 0, 5, 0, 0, 3, 4, 3],
+                //['California', 3, 0, 4, 5, 3, 0, 0, 0, 4, 4, 0, 0],
+                //['Pennsylvania', 0, 0, 0, 0, 0, 0, 0, 10, 5, 3, 0, 2],
+                //['National total', 78, 86, 93, 110, 110, 97, 55, 90, 105, 136, 101, 139],
+            ],
+            type: 'line',
+            /* types: {
+                'National total': 'bar',
+            }, */
+        });
+    }, 9000);
+
+    barFatalities.data.colors({
+        'National total': '#ddd',
+        'Colorado': '#cd0000',
+        'Texas': '#000',
+        'Oklahoma': '#bbb',
+        'Louisiana': '#bbb',
+        'New Mexico': '#bbb',
+        'Wyoming': '#bbb',
+        'North Dakota': '#bbb'
+    });
+    // ----- PIE CHARTS: FATALITIES DEMOGRAPHICS, CAUSE ----- //
+    var donutAge = c3.generate({
+        bindto: '#donut-age',
+        color: {
+            pattern: ['#eff3ff', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#084594']
+        },
+        data: {
+            columns: [
+                ['18 to 19 years', 35],
+                ['20 to 24 years', 169],
+                ['25 to 34 years', 387],
+                ['35 to 44 years', 282],
+                ['45 to 54 years', 256],
+                ['55 to 64 years', 148],
+                ['65 years and over', 48],
+            ],
+            type: 'donut',
+            onclick: function(d, i) {
+                console.log("onclick ", d, i);
+            },
+            onmouseover: function(d, i) {
+                console.log("onmouseover ", d, i);
+            },
+            onmouseout: function(d, i) {
+                console.log("onmouseout ", d, i);
+            },
+        },
+        donut: {
+            title: "Fatalities by Age "
+        }
+    });
+
+    var donutAge = c3.generate({
+        bindto: '#donut-race',
+        color: {
+            pattern: ['#084594', '#2171b5', '#4292c6', '#6baed6', '#9ecae1', '#6cdbef']
+        },
+        data: {
+            columns: [
+                ['White (non-Hispanic)', 917],
+                ['Black or African-American (non-Hispanic)', 61],
+                ['Hispanic or Latino', 323],
+                ['American Indian or Alaskan Native (non-Hispanic)', 6],
+                ['Asian (non-Hispanic)', 2],
+                ['Multiple races (non-Hispanic)', 1]
+            ],
+            type: 'donut',
+            onclick: function(d, i) {
+                console.log("onclick ", d, i);
+            },
+            onmouseover: function(d, i) {
+                console.log("onmouseover ", d, i);
+            },
+            onmouseout: function(d, i) {
+                console.log("onmouseout ", d, i);
+            },
+        },
+        donut: {
+            title: "Fatalities by Race "
+        }
+    });
+
+    var donutAge = c3.generate({
+        bindto: '#donut-type',
+        color: {
+            pattern: ['#084594', '#2171b5', '#4292c6', '#6baed6', '#9ecae1', '#6cdbef']
+        },
+        data: {
+            columns: [
+                ['Contact with objects and equipment', 340],
+                ['Fall', 111],
+                ['Exposure to harmful substances or environments', 119],
+                ['Transportation accidents', 548],
+                ['Fire or explosion', 188],
+                ['Assaults and violent acts', 15]
+            ],
+            type: 'donut',
+            onclick: function(d, i) {
+                console.log("onclick ", d, i);
+            },
+            onmouseover: function(d, i) {
+                console.log("onmouseover ", d, i);
+            },
+            onmouseout: function(d, i) {
+                console.log("onmouseout ", d, i);
+            },
+        },
+        donut: {
+            title: "Fatalities by Category "
+        }
+    });
+
+    // ----- BAR CHART: NATIONAL FATALITY RATE BY RIG COUNT ----- //
+    var barFatalitiesRate = c3.generate({
+        bindto: '#bar-fatalities-rate',
+        data: {
+            x: 'x',
+            columns: [
+                ['x', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014'],
+                ['Average U.S. rig count', 924, 1095, 1290, 1559, 1695, 1814, 1046, 1514, 1846, 1871, 1705, 1804],
+                ['Fatality rate per 100 rigs', 9.2, 9.0, 7.6, 8.0, 7.2, 6.6, 6.5, 7.1, 6.1, 7.6, 6.7, 8.0]
+            ],
+            types: {
+                'Average U.S. rig count': 'bar',
+                'Rate per 100 rigs': 'line'
+            },
+            axes: {
+                'Fatality rate per 100 rigs': 'y2'
+            }
+        },
+
+        grid: {
+            x: {
+                show: true
+            },
+            y: {
+                show: true
+            }
+        },
+        legend: {
+            position: 'inset'
+        },
+        axis: {
+            y: {
+                label: {
+                    text: 'Average U.S. rig count (bar)',
+                    position: 'outer-middle'
+                }
+            },
+            y2: {
+                show: true,
+                label: {
+                    text: 'Fatality rate (line)',
+                    position: 'outer-middle'
+                }
+            }
+        }
+    });
+    barFatalitiesRate.data.colors({
+        'Average U.S. rig count': '#ddd',
+        'Fatality rate per 100 rigs': '#000'
+    });
+    // ----- BAR CHART: COLORADO FATALITY RATE BY RIG COUNT ----- //
+    var barFatalitiesRateColorado = c3.generate({
+        bindto: '#bar-fatalities-rate-colorado',
+        data: {
+            x: 'x',
+            columns: [
+                ['x', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014'],
+                ['Average Colorado rig count', 39, 54, 74, 89, 107, 114, 50, 58, 72, 64, 63, 68],
+                ['Fatality rate per 100 rigs', 5.1, 5.5, 2.7, 6.8, 4.7, 7.0, 0, 0, 0, 6.2, 1.6, 10.3]
+            ],
+            types: {
+                'Average Colorado rig count': 'bar',
+                'Rate per 100 rigs': 'line'
+            },
+            axes: {
+                'Fatality rate per 100 rigs': 'y2'
+            }
+        },
+
+        grid: {
+            x: {
+                show: true
+            },
+            y: {
+                show: true
+            }
+        },
+        legend: {
+            position: 'inset'
+        },
+        axis: {
+            y: {
+                label: {
+                    text: 'Average Colorado rig count (bar)',
+                    position: 'outer-middle'
+                }
+            },
+            y2: {
+                show: true,
+                label: {
+                    text: 'Fatality rate (line)',
+                    position: 'outer-middle'
+                }
+            }
+        }
+    });
+    barFatalitiesRateColorado.data.colors({
+        'Average Colorado rig count': '#ddd',
+        'Fatality rate per 100 rigs': '#000'
+    });
+    // ----- BAR CHART: COLORADO INSPECTIONS VS FATALITY RATE ----- //
+    var barInspections = c3.generate({
+        bindto: '#bar-osha-inspections-fatalities',
+        data: {
+            x: 'x',
+            columns: [
+                ['x', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014'],
+                ['OSHA oil and gas inspections', 11, 29, 58, 64, 128, 107, 55, 53, 72, 52, 42, 53],
+                ['Fatality rate per 100 rigs', 5.1, 5.5, 2.7, 6.8, 4.7, 7.0, 0, 0, 0, 6.2, 1.6, 10.3]
+            ],
+            types: {
+                'OSHA oil and gas inspections': 'bar',
+                'Rate per 100 rigs': 'line'
+            },
+            axes: {
+                'Fatality rate per 100 rigs': 'y2'
+            }
+        },
+
+        grid: {
+            x: {
+                show: true
+            },
+            y: {
+                show: true
+            }
+        },
+        legend: {
+            position: 'inset'
+        },
+        axis: {
+            y: {
+                label: {
+                    text: 'OSHA oil and gas inspections (bar)',
+                    position: 'outer-middle'
+                }
+            },
+            y2: {
+                show: true,
+                label: {
+                    text: 'Fatality rate (line)',
+                    position: 'outer-middle'
+                }
+            }
+        }
+    });
+    barInspections.data.colors({
+        'OSHA oil and gas inspections': '#ddd',
+        'Fatality rate per 100 rigs': '#000'
+    });
+    // ----- BAR CHART: HAZARDOUS OCCUPATIONS ----- //
+    var barHazardousOccupations = c3.generate({
+        bindto: '#bar-hazardous-occupations',
+        data: {
+            x: 'x',
+            columns: [
+                // TOP 10 ONLY
+                ['x', 'Construction', 'Transportation, warehousing', 'Agriculture, forestry, fishing, hunting', 'Government', 'Professional and business services', 'Manufacturing', 'Retail trade', 'Leisure and hospitality', 'Mining, quarrying, oil and gas extraction', 'Wholesale trade'],
+                ['Fatality count', 874, 735, 568, 428, 418, 341, 267, 207, 181, 179, 174],
+                ['Fatality rate', 9.5, 13.5, 24.9, 1.9, 2.6, 2.2, 1.8, 1.9, 14.1, 4.8, 2.6]
+                /* ALL CATEGORIES LISTED
+                ['x', 'Construction', 'Transportation, warehousing', 'Agriculture, forestry, fishing, hunting', 'Government', 'Professional and business services', 'Manufacturing', 'Retail trade', 'Leisure and hospitality', 'Mining, quarrying, oil and gas extraction', 'Wholesale trade', 'Other', 'Educational and health services', 'Financial activities', 'Information', 'Utilities'],
+                ['Fatality count', 874, 735, 568, 428, 418, 341, 267, 207, 181, 179, 174, 144, 114, 32, 17],
+                ['Fatality rate', 9.5, 13.5, 24.9, 1.9, 2.6, 2.2, 1.8, 1.9, 14.1, 4.8, 2.6, 0.7, 1.2, 1.1, 1.7] */
+            ],
+            type: 'bar',
+            axes: {
+                'Fatality count': 'y',
+                'Fatality rate': 'y2'
+            }
+        },
+
+        grid: {
+            x: {
+                show: true
+            },
+            y: {
+                show: true
+            }
+        },
+        legend: {
+            position: 'inset'
+        },
+        axis: {
+            x: {
+                type: 'category',
+                tick: {
+                    'rotate': 40,
+                    multiline: false
+                },
+                height: 0
+            },
+
+            y: {
+                label: {
+                    text: 'Fatality count',
+                    position: 'outer-middle'
+                }
+            },
+            y2: {
+                show: true,
+                label: {
+                    text: 'Fatality rate',
+                    position: 'outer-middle'
+                }
+            }
+        }
+    });
+    barHazardousOccupations.data.colors({
+        'Fatality count': '#bbb',
+        'Fatality rate': '#990012'
+    });
+    </script>
+</body>
+
+</html>
