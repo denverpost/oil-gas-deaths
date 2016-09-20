@@ -42,42 +42,46 @@ body {
     text-decoration:none;
     cursor:pointer;
 }
-.opener {
-    background-position: 50% 90%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-attachment: absolute;
-    height: 90%;
+.headeroneimg {
+    width:100%;
+    display:block;
+    margin:0;
+    padding:0;
+}
+div.title {
     width: 100%;
-    overflow: hidden;
-    position: relative;
-    padding: 0;
-    z-index: -2;
-    margin-bottom:1em;
+    display:block;
+    padding-top:4em;
 }
-#part1intro {
-    background-image:url('../img/project-header.jpg');
-}
-.opener div#title {
-    background-color:rgba(0,0,0,0.15);
-    z-index: -1;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-.opener div#title h2 {
-    font-size:7em;
+div.title h2 {
+    font-size:5.5em;
     width:100%;
     line-height:1;
-    color:rgba(255,255,255,0.975);
-    font-weight: 700;
+    color:rgba(0,0,0,0.4);
+    font-weight: 400;
+    text-transform:uppercase;
     letter-spacing:-1px;
-    text-shadow: 3px 3px 8px rgba(0,0,0,0.75);
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.35);
     padding-top:.25em;
+}
+div.title h1 {
+    margin:1.5em auto 1em;
+    font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
+    font-size:3.5em;
+    font-weight:700;
+    line-height:1.1;
+    color:rgba(34,34,34,1);
+    display:block;
+    z-index:-1;
+}
+div.title h3 {
+    font-size:2.1em;
+    width:80%;
+    color:rgba(0,0,0,0.5);
+    font-weight: 400;
+    text-transform:uppercase;
+    padding:.5em 0;
+    margin:1em 0 2.5em;
 }
 #adwrapper a.boxclose:hover {
     color:#333;
@@ -129,18 +133,18 @@ p.lead {
 }
 p.blurb {
     font-family:'Noticia Text', Georgia, Times, 'Times New Roman', serif;
-    font-size:1.35em;
+    font-size:1.3em;
     line-height:1.9;
     color:rgba(0,0,0,0.5);
     font-style: italic;
+    margin:3em auto 4em;
     text-align: center;
-    margin:1em auto 5em;
     font-weight:400;
 }
 p.byline {
     text-align:center;
     font-size:1em;
-    margin-bottom:2.5em;
+    margin-bottom:5em;
 }
 p.published {
     text-transform:uppercase;
@@ -413,18 +417,6 @@ p.lead .has-tip {
     padding-left:.1em;
     font-weight:bold;
     color:#009696;
-}
-div.title h1 {
-    margin:3em auto;
-    text-align: center;
-    font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
-    font-size:3.2em;
-    font-weight:400;
-    line-height:1.1;
-    text-transform:uppercase;
-    color:rgba(34,34,34,1);
-    display:block;
-    z-index:-1;
 }
 h1, h2, h3, h4 {
   	font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
@@ -930,103 +922,14 @@ li.footnotes {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-/* timeline */
-#timeline {
-    position:relative;
-    display: block;
-    height:50em;
-    overflow-x:hidden;
-    overflow-y:scroll;
-    border:1px solid rgba(0,0,0,0.7);
-    background:rgba(255,255,255,1);
-}
-#timeline hr {
-    border:solid rgba(0,0,0,0.2);
-    border-width:1px 0 0;
-    width:60%;
-    margin:1.8em auto;
-}
-section#timeline > p:nth-child(3) {
-    line-height:1.7;
-}
-#timeline h3.subheading {
-    margin-top:1em;
-}
-#timeline .gridphotograd {
-    height:35%;
-    width:100%;
-    left:0;
-    bottom:0;
-    position:absolute;
-    display: block;
-    background: -webkit-linear-gradient(top, rgba(255,255,255,0.0), rgba(255,255,255,1.0));
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.0), rgba(255,255,255,1.0));
-    background: -ms-linear-gradient(top, rgba(255,255,255,0.0), rgba(255,255,255,1.0));
-    background: -o-linear-gradient(top, rgba(255,255,255,0.0), rgba(255,255,255,1.0));
-    background: linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,1.0));
-    opacity:1;
-    z-index:99;
-}
-.timeline-box {
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
-    padding: 5px 25px 0px 25px;
-    clear: both;
-    background-color:rgba(0,0,0,0.04);
-}
-.timeline-connector {
-    width: 50%;
-    float: right;
-    border-left: 1px solid rgba(0,0,0,0.3);
-    height: 45px;
-}
-.timeline-date {
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    font-size: 1.0em;
-    font-weight: bold;
-    text-align: left;
-    color: white;
-    background-color: rgba(0,0,0,0.8);
-    margin-top: -5px;
-    margin-bottom: 5px;
-    margin-right: -25px;
-    margin-left: -25px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 25px;
-}
-p.timeline-blurb {
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    font-size: 1.0em;
-    line-height: 1.25;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-h2.timeline-title {
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    text-align: center;
-}
-p.timeline-intro {
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    font-size: 1.2em;
-    line-height: 1.4;
-}
-p.timeline-source {
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    color:rgba(0,0,0,0.6);
-    font-size: 0.8em;
-    line-height: 1.2;
-    margin-top:.5em;
-    font-style: italic;
-    text-align: right;
-}
-.timeline-cost {
-    color: rgba(204,0,0,1.0);
-    font-weight: bold;
-}
-#timeline-wrapper {
-    margin-bottom: 25px;
+hr {
+   border : 0;
+   height : 1.85em;
+   width:80%;
+   background : url('../img/derrick-pumpjacks-line.png') 50% 0 no-repeat;
+   opacity:0.8;
+   background-size: contain;
+   margin : 6.5em auto;
 }
 /* video */
 .centervideo {
