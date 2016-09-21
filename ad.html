@@ -4,25 +4,55 @@
     <style type="text/css">body { margin:0; padding:0; }</style>
 </head>
 <body>
-    <div id="dfp-20">
-        <script type="text/javascript">
-            var params = location.search;
-
-            if ( params.indexOf('ad=medium') > -1 ) {
-                googletag.cmd.push(function(){
-                    googletag.defineSlot('/8013/denverpost.com', [[728,90]], 'dfp-20').setTargeting('kv', 'news').addService(googletag.pubads());
-                    googletag.pubads().enableSyncRendering();
-                    //googletag.pubads().disableInitialLoad();
-                    googletag.enableServices();
-                    googletag.display('dfp-20');
-                });
-            } else if ( params.indexOf('ad=small') > -1 ) {
-                googletag.defineSlot('/8013/denverpost.com/Lifestyle/Health/Mental-health', [300,50], 'dfp-20').addService(googletag.pubads());
-                googletag.pubads().enableSyncRendering();
-                googletag.enableServices();
-                googletag.display('dfp-20');
+    <script>
+        Element.prototype.remove = function() {
+            this.parentElement.removeChild(this);
+        }
+        NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+            for(var i = this.length - 1; i >= 0; i--) {
+                if(this[i] && this[i].parentElement) {
+                    this[i].parentElement.removeChild(this[i]);
+                }
             }
-        </script>
-    </div>
+        }
+    </script>
+    <div id='div-gpt-ad-Cube1' style='height:250px; width:300px;'></div>
+    <div id='div-gpt-ad-Cube2' style='height:250px; width:300px;'></div>
+    <div id='div-gpt-ad-bottom-leader' style='height:90px; width:728px;'></div>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        var params = location.search;
+
+        if ( params.indexOf('ad=medium') > -1 ) {
+            document.getElementById("div-gpt-ad-Cube1").remove();
+            document.getElementById("div-gpt-ad-Cube2").remove();
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/8013/denverpost.com', [728, 90], 'div-gpt-ad-bottom-leader').setTargeting('POS', ['bottom_leaderboard']).setTargeting('kv', ['specialsections']).addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-bottom-leader'); });
+        } else if ( params.indexOf('ad=rightcube') > -1 ) {
+            document.getElementById("div-gpt-ad-Cube1").remove();
+            document.getElementById("div-gpt-ad-bottom-leader").remove();
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/8013/denverpost.com', [300, 250], 'div-gpt-ad-Cube2').setTargeting('POS', ['Cube2_RRail_mid']).setTargeting('kv', ['specialsections']).addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-Cube2'); });
+            });
+        } else if ( params.indexOf('ad=leftcube') > -1 ) {
+            document.getElementById("div-gpt-ad-bottom-leader").remove();
+            document.getElementById("div-gpt-ad-Cube2").remove();
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/8013/denverpost.com', [300, 250], 'div-gpt-ad-Cube1').setTargeting('POS', ['Cube1_RRail_ATF']).setTargeting('kv', ['specialsections']).addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-Cube1'); });
+        }
+    </script>
+
 </body>
 </html>
