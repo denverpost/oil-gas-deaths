@@ -7,8 +7,10 @@ var swapped = false;
 var adsloaded = [];
 /* THIS IS CONFIG DATA SPECIFIC TO SITE */
 var showAds = true; //show slide-up leaderboards at bottom
-var slideAds = 3; //number of times to slide up a leaderboard
+var slideAds = 5; //number of times to slide up a leaderboard
 var titleFade = true; //whether to fade the Denver Post logo in the top-bar to show the "DP" and a text title
+var playedVideos = [];
+var currentPlayer = false;
 
 function revealSocial(type,link,title,image,desc,twvia,twrel) {
     title = typeof title !== 'undefined' ? title : false;
@@ -70,12 +72,25 @@ function toggleSidebar(toShow,toHide) {
     scrollDownTo(toShow);
 }
 
-function playerCreator(embedId, playerId, divId) {
+function playerCreator(embedId, playerId, divId, doDarkBack) {
+    doDarkBack = typeof doDarkBack !== 'undefined' ? doDarkBack : false;
     divId = typeof divId !== 'undefined' ? divId : false;
     if (divId) {
         $(divId).animate({backgroundColor:'rgba(0,70,70,0.3)',paddingLeft:'.5em',paddingRight:'.5em'}, 350).delay(2000).animate({backgroundColor:'transparent',paddingLeft:'0',paddingRight:'0'},1000);
     }
-    OO.Player.create(embedId, playerId, {'autoplay':true});
+    if (embedId == 'video1') {
+        darkBackground('#overviewvid',false);
+        scrollDownTo('#overviewvid');
+        vidBack = false;
+    }
+    if (playedVideos.indexOf(playerId) != 0) {
+        playedVideos.push(playerId);
+        $('#' + embedId).html('<video id="'+embedId+'player" preload controls autoplay> \n\
+            <source src="./video/'+playerId+'.mp4" /> \n\
+            <source src="./video/'+playerId+'.webm" /> \n\
+        </video>');
+        $('#' + embedId).css('cursor','default');
+    }
 }
 
 function playerScroller(embedId, playerId, divId) {

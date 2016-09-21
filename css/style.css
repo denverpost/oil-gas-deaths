@@ -177,9 +177,14 @@ p.bylinebottom {
     clear:both;
 }
 section.inset p.byline {
-    font-style: italic;
     font-size:95%;
     margin-bottom:2em;
+}
+section.inset p.blurb {
+    text-align: left;
+    font-size:1.3em;
+    margin:1em auto;
+    width:90%;
 }
 section.inset a.hideme, section.inset a.expandme {
     text-transform: uppercase;
@@ -235,6 +240,7 @@ section.inset.left {
 section.inset.right h3.subheading,
 section.inset.left h3.subheading {
     font-size:1.6em;
+    border:none;
     width:90%;
 }
 section.inset + section.inset {
@@ -247,8 +253,10 @@ section.inset div.title.lowertitle h1 {
     font-size:2.25em;
 }
 section.inset h3.subheading {
-    margin-top:1em;
+    margin:1em auto;
     font-size:2.05em;
+    border:none;
+    text-align:left;
     width:90%;
 }
 section.inset p, .reverse li {
@@ -935,6 +943,17 @@ hr {
 .centervideo {
     margin:4em 0 6em;
 }
+#overviewvid, #slidesoffset {
+    clear:both;
+    margin-bottom:1em;
+}
+#overviewvid .row, #slidesoffset {
+    padding-top:3em;
+    padding-bottom:3em;
+}
+#overviewvid .caption {
+    font-size:1.15em;
+}
 a.startVideo {
     border-bottom:1px solid #444;
     text-decoration: none;
@@ -997,6 +1016,9 @@ a.startVideo:hover {
     background-repeat:no-repeat;
     background-position:center center;
     display:block;
+}
+.vid-embed video {
+    width:100%;
 }
 .vid-embed .innerWrapper {
     height:100%;
@@ -1066,229 +1088,7 @@ div#footer-bar ul.social li {
     float:left;
     display:inline-block;
 }
-/* --- lessons learned videos --- */
-#lessoncontrols {
-    margin-top: 1em;
-}
-#lessonnav,
-#buildnav {
-    position:relative;
-    display:block;
-    width:100%;
-    margin-top:.4em;
-}
-#lessontitle {
-    font-family:'Noticia Text', Georgia, Times, 'Times New Roman', serif;
-    font-size:1.15em;
-    line-height:1.9;
-    color:rgba(0,0,0,0.65);
-    font-style: italic;
-    text-align: center;
-    margin:.5em auto;
-    font-weight:400;
-    visibility:hidden;
-    -webkit-transition:visibility 0s linear 0.3s;
-    transition:visibility 0s linear 0.3s;
-}
-#lessonnav:after {
-    content:'';
-    width:100%;
-    height:0;
-    border-bottom:3px solid rgba(0,0,0,0.3);
-    position:absolute;
-    top:.9em;
-    left:0;
-    z-index: -1;
-}
-#lessonnav button {
-    font-size:1.375em;
-    line-height:1;
-    color:#eee;
-    font-weight:bold;
-    cursor:pointer;
-    -webkit-border-radius:.7em;
-    -moz-border-radius:.7em;
-    border-radius:.7em;
-    border:3px solid rgba(0,0,0,0.3);
-    width:1.4em;
-    height:1.4em;
-    padding:.05em 0 0 .2em;
-    background:#fff;
-    position:absolute;
-    top:0;
-    -webkit-transition:background-color:0.2s;
-    transition:background-color:0.2s;
-    outline:0;
-}
-#lessonnav button:hover,
-#buildnav button:hover {
-    border:3px solid rgba(0,0,0,0.8);
-    background-color:rgba(230,230,230,1.0);
-}
-#lessonnav button:nth-child(1) {
-    left:0;
-}
-#lessonnav button:nth-child(2) {
-    left:19%;
-}
-#lessonnav button:nth-child(3) {
-    left:39%;
-}
-#lessonnav button:nth-child(4) {
-    left:59%;
-}
-#lessonnav button:nth-child(5) {
-    left:79%;
-}
-#lessonnav button:nth-child(6) {
-    right:0;
-}
-#lessonplaypause,
-#buildplaypause {
-    position:relative;
-    display:block;
-    background:transparent;
-    width:100%;
-    padding-bottom:1.4rem;
-    border:2px solid rgba(0,0,0,0.3);
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    outline:0;
-}
-.lessonplay:after,
-.buildplay:after {
-    content:'';
-    display:block;
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    margin-top:-.7em;
-    margin-left:-.4em;
-    width: 0;
-    height: 0;
-    border-top: .8em solid transparent;
-    border-bottom: .8em solid transparent;
-    border-left: 1.4em solid rgba(0,0,0,0.3);
-}
-.lessonpause:before,
-.buildpause:before {
-    width: 8%;
-    height: 1.4em;
-    background: rgba(0,0,0,0.3);
-    position: absolute;
-    content: "";
-    top: .5em;
-    left: 38%;
-}
-.lessonpause:after,
-.buildpause:after {
-    width: 8%;
-    height: 1.4em;
-    background: rgba(0,0,0,0.3);
-    position: absolute;
-    content: "";
-    top: .5em;
-    right: 38%;
-}
-#lessonplaypause:hover,
-#buildplaypause:hover {
-    border-color: rgba(0,0,0,0.8);
-}
-#lessonplaypause.lessonplay:hover:after,
-#buildplaypause.buildplay:hover:after {
-    border-left: 1.4em solid rgba(0,0,0,0.8);
-}
-#lessonplaypause.lessonpause:hover:after,
-#lessonplaypause.lessonpause:hover:before,
-#buildplaypause.buildpause:hover:after,
-#buildplaypause.buildpause:hover:before {
-    background:rgba(0,0,0,0.8);
-}
-#buildnav:after {
-    content:'';
-    width:100%;
-    height:0;
-    border-bottom:3px solid rgba(0,0,0,0.3);
-    position:absolute;
-    top:.6em;
-    left:0;
-    z-index: -1;
-}
-#buildnav button {
-    font-size:1.375em;
-    line-height:1.2;
-    color:#eee;
-    font-weight:bold;
-    cursor:pointer;
-    -webkit-border-radius:.7em;
-    -moz-border-radius:.7em;
-    border-radius:.7em;
-    border:3px solid rgba(0,0,0,0.3);
-    width:1em;
-    height:1em;
-    padding:.2em 0 0 .2em;
-    background:#fff;
-    position:absolute;
-    top:0;
-    -webkit-transition:background-color:0.2s;
-    transition:background-color:0.2s;
-    outline:0;
-}
-#buildnav button:nth-child(1) {
-    left:0;
-}
-#buildnav button:nth-child(2) {
-    left:9%;
-}
-#buildnav button:nth-child(3) {
-    left:18%;
-}
-#buildnav button:nth-child(4) {
-    left:27%;
-}
-#buildnav button:nth-child(5) {
-    left:36%;
-}
-#buildnav button:nth-child(6) {
-    left:45%;
-}
-#buildnav button:nth-child(7) {
-    left:54%;
-}
-#buildnav button:nth-child(8) {
-    left:63%;
-}
-#buildnav button:nth-child(9) {
-    left:72%;
-}
-#buildnav button:nth-child(10) {
-    left:81%;
-}
-#buildnav button:nth-child(11) {
-    left:90%;
-}
-#buildnav button:nth-child(12) {
-    right:0;
-}
-#progress .imgholder {
-    position: relative;
-    display:block;
-    width:100%;
-}
-#builddate {
-    position: absolute;
-    bottom:.5em;
-    right:1em;
-    text-align:right;
-    font-size:1.75em;
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    text-transform: uppercase;
-    display:block;
-    color:rgba(255,255,255,0.975);
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.75);
-}
+
 @media (max-width:1240px) {
     .inset-video-right, section.inset .inset-video-right {
         margin-right:0;
