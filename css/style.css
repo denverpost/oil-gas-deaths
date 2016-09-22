@@ -273,8 +273,8 @@ section.inset h3.subheading {
 }
 section.inset p, .reverse li {
     font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    font-size:1.2em;
-    line-height: 1.85;
+    font-size:1.15em;
+    line-height: 1.8;
 }
 section.inset .centerphoto {
     margin:2em 0;
