@@ -3,6 +3,7 @@
 
 User-agent: *
 Disallow: /slick/
+Disallow: /video/
 Disallow: /img/
 Disallow: /css/
 Disallow: /js/
