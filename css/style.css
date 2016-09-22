@@ -1456,6 +1456,7 @@ div#footer-bar ul.social li {
     }
     .opener div#title p.blurb {
         color:rgba(0,0,0,0.7);
+        text-shadow: none;
     }
     #logoimg {
         height:1.3em;
