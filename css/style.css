@@ -64,28 +64,29 @@ body {
     width:30%;
     height: 50%;
     position: absolute;
-    top:30%;
-    left:5%;
+    top:25%;
+    right:5%;
 }
 .opener div#title h2 {
+    font-family:'Josefin Slab', Helvetica, Arial, sans-serif !important;
     font-size:5em;
     width:100%;
-    line-height:1;
+    line-height:1.1;
     color:rgba(255,255,255,0.975);
-    font-weight: 700;
-    letter-spacing:-1px;
+    font-weight: 400;
     text-shadow: 3px 3px 8px rgba(0,0,0,0.75);
     padding:0 0 .25em;
 }
 .opener div#title p.blurb {
-    font-family:'Noticia Text', Georgia, Times, 'Times New Roman', serif;
-    font-size:1.25em;
-    line-height:1.6;
+    font-family:'Open Sans Condensed', Helvetica, Arial, sans-serif !important;
+    font-size:1.45em;
+    line-height:1.5;
     color:rgba(255,255,255,0.975);
-    font-weight:400;
+    font-weight:300;
     text-align: left;
     margin:0;
-    padding:0 0 1em;
+    padding:0 0 1em .25em;
+    font-style: normal;
 }
 div.title {
     width: 100%;
