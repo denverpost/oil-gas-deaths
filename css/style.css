@@ -42,11 +42,54 @@ body {
     text-decoration:none;
     cursor:pointer;
 }
-.headeroneimg {
+.opener {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: absolute;
+    height: 90%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    z-index: -2;
+    margin-bottom:1em;
+}
+.opener div#title {
+    background-color:rgba(0,0,0,0.15);
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.opener div#title > .row {
+    position: absolute;
+    top:40%;
+    left:10%;
+}
+.opener div#title h2 {
+    font-size:5.5em;
     width:100%;
-    display:block;
+    line-height:1;
+    color:rgba(255,255,255,0.975);
+    font-weight: 700;
+    letter-spacing:-1px;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.75);
+    padding:0 0 .25em;
+}
+.opener div#title p.blurb {
+    font-family:'Noticia Text', Georgia, Times, 'Times New Roman', serif;
+    font-size:1.3em;
+    line-height:1.6;
+    color:rgba(255,255,255,0.975);
+    font-weight:400;
+    text-align: left;
     margin:0;
-    padding:0;
+    padding:0 0 1em;
 }
 div.title {
     width: 100%;
@@ -118,13 +161,14 @@ div#name2 {
     width:18em;
     opacity:0;
 }
-div#name2 h1 {
+div#name2 h2 {
     font-family:'PT Sans', Helvetica, Arial, sans-serif !important;
     font-size:1.1em;
     text-transform: uppercase;
-    line-height:1.7;
+    line-height:1.5;
     font-weight:400;
     color:#555;
+    margin:0;
 }
 p.lead {
     font-size:1.25em;
@@ -1178,178 +1222,178 @@ div#footer-bar ul.social li {
 }
 /* narratives table */
 #narratives th.legend {
-        background-color: #eee;
-        padding: 10px;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        font-weight: bold;
-    }
-    #narratives td.legend {
-        background-color: #eee;
-        padding: 5px;
-        font-family: Arial, sans-serif;
-        font-size: 12px;
-        font-weight: bold;
-    }
-    #narratives table#profile {
-        /* max-width: 58%; */
-        table-layout: fixed;
-        border-collapse: inherit;
-        border: none;
-        border-spacing: 3px;
-        float: left;
-        clear: both;
-    }
-    #narratives table#profile td > div {
-        display: none;
-    }
-    #narratives table#profile td.struck,
-    #narratives table#profile td.explosion,
-    #narratives table#profile td.vehicle,
-    #narratives table#profile td.fall,
-    #narratives table#profile td.crush,
-    #narratives table#profile td.collapse,
-    #narratives table#profile td.gauging,
-    #narratives table#profile td.electrocution,
-    #narratives table#profile td.asphyxiation,
-    #narratives table#profile td.homicide {
-        background-image: url('../img/chart_figure.png');
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: 75%;
-    }
-    #narratives td.fall {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.fall:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.struck {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.struck:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.crush {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.crush:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.explosion {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.explosion:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.collapse {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.collapse:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.vehicle {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.vehicle:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.electrocution {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.electrocution:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.asphyxiation {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.asphyxiation:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.homicide {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.homicide:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives td.gauging {
-        background-color: #ddd;
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
-    }
-    #narratives td.gauging:hover {
-        background: rgba(22, 117, 175, .8);
-    }
-    #narratives table#profile tr {
-        background: none;
-    }
-    #narratives #profile-container {
-        margin-top: 25px;
-    }
-    #narratives .table-content {
-        margin: -28px 10px 10px 10px;
-        color: #333;
-    }
-    #narratives .table-content p {
-        margin:0 0 .5em;
-        line-height: 1.6;
-        font-size:1.1em;
-    }
-    #narratives .table-content h3 {
-        font-size: 1.7em;
-        margin-bottom: 1em;
-        color: #333;
-    }
-    #narratives table#profile td.date {
-        font-weight: bold;
-        text-align: center;
-        font-family: Arial, sans-serif;
-        font-size: 1em;
-        color: #333;
-        height: 25px;
-        width: 40px;
-    }
-    #narratives table#profile th {
-        font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
-        font-size:1.7em;
-        padding:0 0 .5em;
-    }
-    #narratives td.cell-highlight {
-        background: rgba(175, 22, 40, .6);
-    }
-    #narratives .source {
-        font-style: italic;
-        text-align: right;
-        font-size:80%;
-    }
+    background-color: #eee;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+#narratives td.legend {
+    background-color: #eee;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+#narratives table#profile {
+    /* max-width: 58%; */
+    table-layout: fixed;
+    border-collapse: inherit;
+    border: none;
+    border-spacing: 3px;
+    float: left;
+    clear: both;
+}
+#narratives table#profile td > div {
+    display: none;
+}
+#narratives table#profile td.struck,
+#narratives table#profile td.explosion,
+#narratives table#profile td.vehicle,
+#narratives table#profile td.fall,
+#narratives table#profile td.crush,
+#narratives table#profile td.collapse,
+#narratives table#profile td.gauging,
+#narratives table#profile td.electrocution,
+#narratives table#profile td.asphyxiation,
+#narratives table#profile td.homicide {
+    background-image: url('../img/chart_figure.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+}
+#narratives td.fall {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.fall:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.struck {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.struck:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.crush {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.crush:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.explosion {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.explosion:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.collapse {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.collapse:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.vehicle {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.vehicle:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.electrocution {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.electrocution:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.asphyxiation {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.asphyxiation:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.homicide {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.homicide:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives td.gauging {
+    background-color: #ddd;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#narratives td.gauging:hover {
+    background: rgba(22, 117, 175, .8);
+}
+#narratives table#profile tr {
+    background: none;
+}
+#narratives #profile-container {
+    margin-top: 25px;
+}
+#narratives .table-content {
+    margin: -28px 10px 10px 10px;
+    color: #333;
+}
+#narratives .table-content p {
+    margin:0 0 .5em;
+    line-height: 1.6;
+    font-size:1.1em;
+}
+#narratives .table-content h3 {
+    font-size: 1.7em;
+    margin-bottom: 1em;
+    color: #333;
+}
+#narratives table#profile td.date {
+    font-weight: bold;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: #333;
+    height: 25px;
+    width: 40px;
+}
+#narratives table#profile th {
+    font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
+    font-size:1.7em;
+    padding:0 0 .5em;
+}
+#narratives td.cell-highlight {
+    background: rgba(175, 22, 40, .6);
+}
+#narratives .source {
+    font-style: italic;
+    text-align: right;
+    font-size:80%;
+}
 @media (max-width:1240px) {
     .inset-video-right, section.inset .inset-video-right {
         margin-right:0;
@@ -1360,7 +1404,7 @@ div#footer-bar ul.social li {
         width:50%;
     }
     .opener div#title h2 {
-        font-size:6em;
+        font-size:4em;
     }
     div.over-hide {
         top:5%;
@@ -1425,7 +1469,11 @@ div#footer-bar ul.social li {
 }
 @media (max-width:800px) {
     .opener div#title h2 {
-        font-size:5em;
+        font-size:3em;
+    }
+    .opener div#title p.blurb {
+        font-size:1.2em;
+        line-height:1.5;
     }
     .centergallery .caption {
         font-size:.8em;
@@ -1463,8 +1511,12 @@ div#footer-bar ul.social li {
         font-size:2.25em;
     }
     .opener div#title h2 {
-        font-size:4em;
+        font-size:3em;
         letter-spacing:0px;
+    }
+    .opener div#title p.blurb {
+        font-size:1em;
+        line-height:1.4;
     }
     p.blurb {
         font-size:1.1em;
@@ -1553,7 +1605,7 @@ div#footer-bar ul.social li {
         font-size:2em;
     }
     .opener div#title h2 {
-        font-size:3em;
+        font-size:2.5em;
     }
     p, .reveal-modal li {
         font-size:1em;
