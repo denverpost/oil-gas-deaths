@@ -62,9 +62,10 @@ body {
 }
 .opener div#title {
     width:30%;
-    height: 50%;
+    display:table-cell;
+    vertical-align:bottom;
     position: absolute;
-    top:35%;
+    bottom:5%;
     right:5%;
 }
 .opener div#title h2 {
