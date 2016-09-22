@@ -1309,38 +1309,38 @@ div#footer-bar ul.social li {
         background: rgba(22, 117, 175, .8);
     }
     #narratives table#profile tr {
-        /* height: 25px; */
         background: none;
     }
     #narratives #profile-container {
-        /* width: 40%;
-        float: right; */
         margin-top: 25px;
     }
     #narratives .table-content {
         margin: -28px 10px 10px 10px;
-        font-family: Arial, sans-serif;
         color: #333;
     }
     #narratives .table-content p {
-        margin-top: -10px;
+        margin:0 0 .5em;
+        line-height: 1.6;
+        font-size:1.1em;
     }
     #narratives .table-content h3 {
-        font-size: 24px;
-        margin-bottom: 20px;
+        font-size: 1.7em;
+        margin-bottom: 1em;
         color: #333;
     }
     #narratives table#profile td.date {
         font-weight: bold;
         text-align: center;
         font-family: Arial, sans-serif;
-        font-size: 13px;
+        font-size: 1em;
         color: #333;
         height: 25px;
         width: 40px;
     }
     #narratives table#profile th {
-        border-color: none;
+        font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
+        font-size:1.7em;
+        padding:0 0 .5em;
     }
     #narratives td.cell-highlight {
         background: rgba(175, 22, 40, .6);
