@@ -1405,7 +1405,10 @@ div#footer-bar ul.social li {
         width:50%;
     }
     .opener div#title h2 {
-        font-size:4em;
+        font-size:3.5em;
+    }
+    .opener div#title p.blurb {
+        font-size:1.3em;
     }
     div.over-hide {
         top:5%;
@@ -1537,7 +1540,7 @@ div#footer-bar ul.social li {
         font-size:2.25em;
     }
     .opener div#title h2 {
-        font-size:3.5em;
+        font-size:3.2em;
         letter-spacing:0px;
     }
     .opener div#title p.blurb {
@@ -1631,7 +1634,7 @@ div#footer-bar ul.social li {
         font-size:2em;
     }
     .opener div#title h2 {
-        font-size:3em;
+        font-size:2.8em;
     }
     p, .reveal-modal li {
         font-size:1em;
