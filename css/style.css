@@ -2,7 +2,7 @@ body {
 	background:rgba(255,255,255,1);
     background:#fff;
     z-index:1;
-    font-family:'Noticia Text', Georgia, Times, 'Times New Roman', serif;
+    font-family:'Source Serif Pro', Georgia, Times, 'Times New Roman', serif;
 }
 .fixed {
     z-index:599999;
@@ -68,20 +68,21 @@ body {
     right:5%;
 }
 .opener div#title h2 {
-    font-family:'Josefin Slab', Helvetica, Arial, sans-serif !important;
-    font-size:5em;
+    font-family:'Source Serif Pro', Georgia, Times, 'Times New Roman', serif!important;
+    font-size:4em;
     width:100%;
-    line-height:1.1;
+    line-height:1;
     color:rgba(255,255,255,0.975);
     font-weight: 400;
-    text-shadow: 3px 3px 8px rgba(0,0,0,0.75);
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.85);
     padding:0 0 .25em;
 }
 .opener div#title p.blurb {
     font-family:'Open Sans Condensed', Helvetica, Arial, sans-serif !important;
-    font-size:1.45em;
+    font-size:1.5em;
     line-height:1.5;
     color:rgba(255,255,255,0.975);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.85);
     font-weight:300;
     text-align: left;
     margin:0;
@@ -108,7 +109,7 @@ h2.heading {
 }
 div.title h1 {
     margin:.8em auto;
-    font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
+    font-family:'Open Sans Condensed', Helvetica, Arial, sans-serif !important;
     font-size:3.5em;
     font-weight:700;
     line-height:1.1;
@@ -116,7 +117,6 @@ div.title h1 {
     display:block;
     text-align:center;
     z-index:-1;
-    letter-spacing:-1px;
 }
 div.title h3 {
     font-size:2em;
@@ -189,7 +189,7 @@ p.lead + p {
     clear:left;
 }
 p.blurb {
-    font-family:'Noticia Text', Georgia, Times, 'Times New Roman', serif;
+    font-family:'Source Serif Pro', Georgia, Times, 'Times New Roman', serif;
     font-size:1.3em;
     line-height:1.9;
     color:rgba(0,0,0,0.5);
@@ -274,12 +274,12 @@ section.inset.left a.expandme:after {
     margin-top:2em!important;
 }
 section.inset {
-    background:#f8f8f8;
+    background:#f4f4f4;
     padding:3em 0 6em;
     margin:6em auto;
 }
 section.inset.right {
-    background:#f8f8f8;
+    background:#f4f4f4;
     padding:0 3em 2em;
     margin:.5em -15% .5em 1.5em;
     width: 60%;
@@ -287,7 +287,7 @@ section.inset.right {
     line-height:1.4;
 }
 section.inset.left {
-    background:#f8f8f8;
+    background:#f4f4f4;
     padding:0 3em 2em;
     margin:.5em 1.5em .5em -15%;
     width: 60%;
@@ -488,7 +488,7 @@ p.lead .has-tip {
     color:#009696;
 }
 h1, h2, h3, h4 {
-  	font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
+  	font-family:'Open Sans Condensed', Helvetica, Arial, sans-serif !important;
   	font-weight:700;
 }
 p, .reveal-modal li {
@@ -562,7 +562,7 @@ p, .reveal-modal li {
     text-decoration:none;
 }
 h3.subheading {
-    font-family:'Noticia Text', Georgia, Times, serif;
+    font-family:'Source Serif Pro', Georgia, Times, serif;
     font-size:2.2em;
     font-weight:700;
     display:block;
@@ -1192,7 +1192,7 @@ div#footer-bar ul.social li {
     background-repeat:no-repeat;
     background-position:90% 50%;
     background-size:20%;
-    font-family:'Playfair Display', Georgia, Times, 'Times New Roman', serif !important;
+    font-family:'Arapey', Georgia, Times, 'Times New Roman', serif !important;
     font-weight:700;
     font-size:3em;
     text-align:left;
@@ -1202,7 +1202,7 @@ div#footer-bar ul.social li {
 }
 .closer div#next-inning-teaser h2 span {
     display: block;
-    font-family:'Muli', Helvetica, Arial, sans-serif !important;
+    font-family:'Arapey', Helvetica, Arial, sans-serif !important;
     font-weight:400;
     text-transform:uppercase;
     font-size:50%;
@@ -1383,7 +1383,7 @@ div#footer-bar ul.social li {
     width: 40px;
 }
 #narratives table#profile th {
-    font-family:'PT Sans Narrow', Helvetica, Arial, sans-serif !important;
+    font-family:'Open Sans Condensed', Helvetica, Arial, sans-serif !important;
     font-size:1.7em;
     padding:0 0 .5em;
 }
