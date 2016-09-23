@@ -1392,6 +1392,9 @@ div#footer-bar ul.social li {
 #narratives td.cell-highlight {
     background: rgba(175, 22, 40, .6);
 }
+#narratives td.highlightCell {
+    background-color: rgba(22, 117, 175, .8);
+}
 #narratives .source {
     font-style: italic;
     text-align: right;
