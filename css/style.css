@@ -721,64 +721,6 @@ p.credit {
   text-align:right;
   padding-bottom:.5em;
 }
-.centergallery {
-    width:100%;
-    max-height:100%;
-    overflow:hidden;
-    display:block;
-    position:relative;
-    margin:4em 0 8em;
-}
-.centergallery .columns {
-    padding:0 1.5em;
-}
-.centergallery img {
-    margin:0 auto .5em;
-}
-.centergallery button span {
-    font-family:Times, Georgia, serif !important;
-    font-size:2em;
-    margin:0 1em;
-    display:block;
-    color:rgba(153,153,153,0.8);
-    text-shadow:0px 0px 2px rgba(80,80,80,.5);
-    transform:scale(1,8);
-    -webkit-transform:scale(1,8);
-    -moz-transform:scale(1,8);
-    -ms-transform:scale(1,8);
-    -o-transform:scale(1,8);
-}
-.centergallery .slick-list {
-    outline:none;
-}
-.centergallery button.slick-next {
-    position:absolute;
-    background:rgba(255,255,255,1.0);
-    background-image:url('../img/nextButton.svg');
-    background-repeat:no-repeat;
-    background-position:50% 50%;
-    background-size:30%;
-    top:0;
-    right:0;
-    height:100%;
-    width:15%;
-    text-align:left;
-    outline:none;
-}
-.centergallery button.slick-prev {
-    position:absolute;
-    background:rgba(255,255,255,1.0);
-    background-image:url('../img/previousButton.svg');
-    background-repeat:no-repeat;
-    background-position:50% 50%;
-    background-size:30%;
-    top:0;
-    left:0;
-    height:100%;
-    width:15%;
-    text-align:right;
-    outline:none;
-}
 /* graphic */
 #graphics {
     position: relative;
@@ -1188,7 +1130,7 @@ div#footer-bar ul.social li {
     height:100%;
     top:0;
     background:#000;
-    background-image:url(../img/nextButton.svg);
+    background-image:url(../img/nextButton2.svg);
     background-repeat:no-repeat;
     background-position:90% 50%;
     background-size:20%;
@@ -1211,15 +1153,17 @@ div#footer-bar ul.social li {
     color:#c9c9c9;
     letter-spacing:1px;
 }
-.closer div#next-inning-teaser img{
-    height:20px;
-    padding-bottom:2px;
+.closer div#next-inning-teaser:hover .teaser {
+    opacity:0.75;
 }
-.closer div#next-inning-teaser:hover{
-    opacity:0.8;
+.closer div#next-inning-teaser h2 {
+    -webkit-transition: margin-left 300ms ease-out;
+    -moz-transition: margin-left 300ms ease-out;
+    -o-transition: margin-left 300ms ease-out;
+    transition: margin-left 300ms ease-out;
 }
-.closer div#next-inning-teaser h2 a:hover{
-    color:#ffb368
+.closer div#next-inning-teaser:hover h2 {
+    margin-left:52.5%;
 }
 /* narratives table */
 #narratives th.legend {
@@ -1502,35 +1446,14 @@ div#footer-bar ul.social li {
     #graphic-over div.over-hide p {
         font-size: .9em;
     }
+    .closer div#next-inning-teaser h2 {
+        font-size:2.25em;
+    }
 }
 @media (max-width:800px) {
     .opener div#title p.blurb {
         font-size:1.2em;
         line-height:1.5;
-    }
-    .centergallery .caption {
-        font-size:.8em;
-    }
-    .centergallery button span {
-        font-size:1.25em;
-        margin:0 .5em;
-        text-shadow:none;
-        transform:scale(1,5);
-        -webkit-transform:scale(1,5);
-        -moz-transform:scale(1,5);
-        -ms-transform:scale(1,5);
-        -o-transform:scale(1,5);
-    }
-    .centergallery .columns {
-        padding:0 0.5em;
-    }
-    .centergallery button.slick-next {
-        padding:0;
-        width:8%;
-    }
-    .centergallery button.slick-prev {
-        padding:0;
-        width:8%;
     }
     .centervideo {
         margin:2em 0;
@@ -1538,6 +1461,17 @@ div#footer-bar ul.social li {
     section.inset p {
         line-height: 1.7;
     }
+    .teaser {
+        display:none;
+    }
+    .closer div#next-inning-teaser h2 {
+        margin-left:5%;
+        width:90%;
+    }
+    .closer div#next-inning-teaser:hover h2 {
+        margin-left:7.5%;
+    }
+    #credits { top:50px; }
 }
 @media (max-width:540px) {
     div.title h1 {
@@ -1624,6 +1558,9 @@ div#footer-bar ul.social li {
     div#footer-bar {
         padding: .5em 1em .5em;
     }
+    .closer div#next-inning-teaser h2 {
+        font-size:1.8em;
+    }
 }
 @media (max-width:540px) and (orientation:landscape) {
     .infobox p {
@@ -1652,5 +1589,8 @@ div#footer-bar ul.social li {
     }
     section.inset p.caption {
         font-size: 1em;
+    }
+    .closer div#next-inning-teaser h2 {
+        font-size:1.5em;
     }
 }
