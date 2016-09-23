@@ -55,9 +55,7 @@ body {
     margin-bottom:1em;
 }
 .opener .headeroneimg {
-    position: absolute;
-    top:0;
-    left:0;
+    display: block;
     width:100%;
 }
 .opener div#title {
