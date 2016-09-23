@@ -13,6 +13,7 @@
 
 	<link rel="stylesheet" type="text/css" href="./css/foundation.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/c3.css" >
 
 	<meta name="distribution" content="global" />
 	<meta name="robots" content="noindex, nofollow" />
@@ -204,6 +205,26 @@
 		<p>Wyoming has a researcher who does nothing but track workplace deaths and who produces an annual report identifying trends and recommending changes.</p>
 		<p>West Virginia formed a commission to study worker safety in the oil and gas industry. The commission&rsquo;s work led the state legislature to pass a bill this year that will create a database of accidents at oil and gas worksites.</p>
 		<p>In Colorado, there already is a requirement that oil and gas companies report certain accidents to the Colorado Oil and Gas Conservation Commission, the state agency that regulates the industry. But state law says the COGCC should administer rules only to protect the environment and the general public. The statute specifically forbids the COGCC from imposing worker safety rules on companies already regulated by the Occupational Health and Safety Administration.</p>
+	</div>
+</div>
+<div class="row">
+	<div class="large-9 large-centered medium-10 medium-centered small-12 columns">
+		<div class="centerphoto">
+			<h3>Hazardous occupations 2014</h3>
+	        <p>In 2014, the last year data is available, 181 workers in the mining, quarrying and natural gas extraction sector died on the job, making it the ninth most dangerous sector for workers in the country. With 874 on-the-job deaths, construction workers had the highest fatality count. However, when measured by rate per 100,000 workers, the mining, quarrying and natural gas extraction sector ranked second (14.1) behind only the agriculture, forestry, fishing and hunting sector (24.9).
+            <div style="height: 400px;" id="bar-hazardous-occupations"></div>
+            <p class="source">Bureau of Labor Statistics</p>
+		    <script>
+		    // ----- BAR CHART: FATALITIES BY STATE ----- //
+			    $(document).ready(function(){
+			    	var barHazardousOccupations=c3.generate({bindto:"#bar-hazardous-occupations",data:{x:"x",columns:[["x","Construction","Transportation, warehousing","Agriculture, forestry, fishing, hunting","Government","Professional and business services","Manufacturing","Retail trade","Leisure and hospitality","Mining, quarrying, oil and gas extraction","Wholesale trade"],["Fatality count",874,735,568,428,418,341,267,207,181,179,174],["Fatality rate",9.5,13.5,24.9,1.9,2.6,2.2,1.8,1.9,14.1,4.8,2.6]],type:"bar",axes:{"Fatality count":"y","Fatality rate":"y2"}},grid:{x:{show:!1},y:{show:!0}},legend:{position:"inset"},axis:{x:{type:"category",tick:{rotate:40,multiline:!1},height:0},y:{label:{text:"Fatality count",position:"outer-middle"}},y2:{show:!0,label:{text:"Fatality rate",position:"outer-middle"}}}});barHazardousOccupations.data.colors({"Fatality count":"#bbb","Fatality rate":"#990012"});
+				});
+		    </script>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="large-7 large-centered medium-9 medium-centered small-12 columns">
 		<p>&ldquo;I think we view our authority in this realm pretty narrowly,&rdquo; said Matt Lepore, the commission&rsquo;s director.</p>
 		<p>Between 2000 and 2015, companies reported 485 accidents to the COGCC, using a document that the commission calls a Form 22. In 348 of those accidents, a worker was injured or killed, a Post review of the reports found.</p>
 		<p>But the complicated wording of the rule that requires the reports gives companies wide discretion about when &mdash; and when not &mdash; to tell state regulators about an accident.</p>
@@ -316,11 +337,6 @@
 		<p>The answer, though, may have provided a clue to a problem federal occupational safety researchers, too, were wrestling with.</p>
 		<p>In 2014, three workers died of heart failure in Colorado after breathing in toxic fumes while taking samples from the same type of collection tanks, a process known as &ldquo;tank gauging.&rdquo; The COGCC, in fact, had received a Form 22 for one of those deaths, as well as another Form 22 for an instance when a worker &ldquo;lost and regained consciousness&rdquo; while tank gauging.</p>
 		<p>Lepore said one possible explanation for the fires was the linking up of multiple collection tanks, something that has become more common as companies use new technology to drill several wells from the same pad. The linking allows large concentrations of fumes from the whole series of tanks to escape from a single leakage point &mdash; or a single sampling hatch.</p>
-		<p>COGCC staffers have considered proposing a rule requiring there to be valves between the tanks to prevent the buildup of fumes, Lepore said. But, because of the COGCC&rsquo;s limitations when it comes to worker safety, the change would be intended to address only the fires, not the deaths.</p>
-		<p>&ldquo;That&rsquo;s not our role,&rdquo; he said.</p>
-		<p>Instead, Lepore said, it&rsquo;s OSHA&rsquo;s.</p>
-		<p>But, as with all industries, oil and gas companies are required to call OSHA after a small percentage of only the most serious accidents that occur on worksites. A new rule will require companies with more than 250 employees to submit data on all accidents to OSHA four times a year. Smaller companies in some industries &mdash; but not the oil and gas industry &mdash; will also have to submit the data.</p>
-		<p>That makes the COGCC&rsquo;s Form 22s a potentially valuable source of information on accidents at oil and gas sites. But Lepore said he knows of no instance when the COGCC shared information or trends from the accident reports with OSHA. Herb Gibson, OSHA&rsquo;s area director in Denver, said he can&rsquo;t recall any time when the COGCC notified his agency of safety problems.</p>
 	</div>
 </div>
 <div class="row">
@@ -333,10 +349,44 @@
 </div>
 <div class="row">
 	<div class="large-7 large-centered medium-9 medium-centered small-12 columns">
+		<p>COGCC staffers have considered proposing a rule requiring there to be valves between the tanks to prevent the buildup of fumes, Lepore said. But, because of the COGCC&rsquo;s limitations when it comes to worker safety, the change would be intended to address only the fires, not the deaths.</p>
+		<p>&ldquo;That&rsquo;s not our role,&rdquo; he said.</p>
+		<p>Instead, Lepore said, it&rsquo;s OSHA&rsquo;s.</p>
+		<p>But, as with all industries, oil and gas companies are required to call OSHA after a small percentage of only the most serious accidents that occur on worksites. A new rule will require companies with more than 250 employees to submit data on all accidents to OSHA four times a year. Smaller companies in some industries &mdash; but not the oil and gas industry &mdash; will also have to submit the data.</p>
+		<p>That makes the COGCC&rsquo;s Form 22s a potentially valuable source of information on accidents at oil and gas sites. But Lepore said he knows of no instance when the COGCC shared information or trends from the accident reports with OSHA. Herb Gibson, OSHA&rsquo;s area director in Denver, said he can&rsquo;t recall any time when the COGCC notified his agency of safety problems.</p>
 		<p>Other states, when faced with deaths in the oil and gas industry, have decided it&rsquo;s not enough to leave worker safety solely up to OSHA.</p>
 		<p>In Wyoming, where the Bureau of Labor Statistics says 69 oil and gas workers died between 2003 and 2014, officials in 2011 created a position for a state occupational epidemiologist &mdash; a researcher who would examine trends in oil and gas deaths and recommend changes that could prevent them. The epidemiologist now produces a report every year that goes to lawmakers and state officials.</p>
 		<p>Meredith Towle, the current epidemiologist, said she has changed the way some deaths are categorized &mdash; for example, putting the deaths of workers driving between wells into the oil and gas classification instead of the transportation classification &mdash; to get employers to pay more attention to the industry&rsquo;s hazards.</p>
 		<p>&ldquo;We just wanted the oil and gas industry to get a better picture of what is causing fatalities among the workers supporting the industry,&rdquo; she said.</p>
+	</div>
+</div>
+<div class="row">
+	<div class="large-9 large-centered medium-10 medium-centered small-12 columns">
+		<div class="centerphoto">
+			<h3>Fatality rates by average rig count</h3>
+	        <p>These charts plot the average rig count in the United States (left) and Colorado (right) from 2003-14 and the oil and gas worker fatality rate per 100 rigs over that time period.</p>
+	        <div class="row">
+		        <div class="large-6 medium-6 small-12 columns">
+		            <h3>U.S. fatalities by rig count</h3>
+		            <div style="height: 400px;" id="bar-fatalities-rate"></div>
+		        </div>
+		        <div class="large-6 medium-6 small-12 columns">
+		            <h3>Colorado fatalities by rig count</h3>
+		            <div style="height: 400px;" id="bar-fatalities-rate-colorado"></div>
+		        </div>
+			</div>
+	        <p class="source">Source: Baker Hughes, Denver Post research</p>
+		    <script>
+		    // ----- BAR CHART: FATALITIES BY STATE ----- //
+			    $(document).ready(function(){
+			    	var barFatalitiesRate=c3.generate({bindto:"#bar-fatalities-rate",data:{x:"x",columns:[["x","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],["Average U.S. rig count",924,1095,1290,1559,1695,1814,1046,1514,1846,1871,1705,1804],["Fatality rate per 100 rigs",9.2,9,7.6,8,7.2,6.6,6.5,7.1,6.1,7.6,6.7,8]],types:{"Average U.S. rig count":"bar","Rate per 100 rigs":"line"},axes:{"Fatality rate per 100 rigs":"y2"}},grid:{x:{show:!1},y:{show:!0}},legend:{position:"inset"},axis:{y:{label:{text:"Average U.S. rig count (bar)",position:"outer-middle"}},y2:{show:!0,label:{text:"Fatality rate (line)",position:"outer-middle"}}}});barFatalitiesRate.data.colors({"Average U.S. rig count":"#ddd","Fatality rate per 100 rigs":"#000"});var barFatalitiesRateColorado=c3.generate({bindto:"#bar-fatalities-rate-colorado",data:{x:"x",columns:[["x","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],["Average Colorado rig count",39,54,74,89,107,114,50,58,72,64,63,68],["Fatality rate per 100 rigs",5.1,5.5,2.7,6.8,4.7,7,0,0,0,6.2,1.6,10.3]],types:{"Average Colorado rig count":"bar","Rate per 100 rigs":"line"},axes:{"Fatality rate per 100 rigs":"y2"}},grid:{x:{show:!1},y:{show:!0}},legend:{position:"inset"},axis:{y:{label:{text:"Average Colorado rig count (bar)",position:"outer-middle"}},y2:{show:!0,label:{text:"Fatality rate (line)",position:"outer-middle"}}}});barFatalitiesRateColorado.data.colors({"Average Colorado rig count":"#ddd","Fatality rate per 100 rigs":"#000"});
+				});
+		    </script>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="large-7 large-centered medium-9 medium-centered small-12 columns">
 		<p>In West Virginia, where 26 oil and gas workers died between 2003 and 2014, Gov. Earl Ray Tomblin was so alarmed at the accidents &mdash; and the fact that he learned about many of them only through the media &mdash; that he has created a special commission on oil and gas safety. The commission included state and local officials and representatives of the industry, held six meetings across the state in 2015 and, by the end, presented 18 recommendations on worker safety.</p>
 		<p>Among the proposals: a comprehensive database of fatal and serious-injury accidents at oil and gas sites, a centralized list of classes on occupational safety, a set of best practices for monitoring toxic vapors at worksites, and a legal change that might encourage companies to investigate more deeply after an accident.</p>
 		<p>The West Virginia legislature passed bills this year that adopted several of the recommendations, including a reporting requirement that will lead to the database&rsquo;s creation.</p>
@@ -358,7 +408,7 @@
 <!-- CREDITS -->
 <div class="row">
 	<div class="large-8 large-centered medium-10 medium-centered small-12 columns">
-		<p class="bylinebottom"><i>><a href="http://www.denverpost.com/author/monte-whaley/" target="_blank">Monte Whaley</a>: <a href="tel:+17209290907">720-929-0907</a>, <a href="mailto:mwhaley@denverpost.com?Oil and Gas Deaths project">mwhaley@denverpost.com</a> or <a href="twitter.com/monteWhaley" title="Monte Whaley on Twitter">@monteWhaley</a></i></p>
+		<p class="bylinebottom"><i><a href="http://www.denverpost.com/author/monte-whaley/" target="_blank">Monte Whaley</a>: <a href="tel:+17209290907">720-929-0907</a>, <a href="mailto:mwhaley@denverpost.com?Oil and Gas Deaths project">mwhaley@denverpost.com</a> or <a href="twitter.com/monteWhaley" title="Monte Whaley on Twitter">@monteWhaley</a></i></p>
 		<p class="bylinebottom"><i><a href="http://www.denverpost.com/author/john-ingold/" target="_blank">John Ingold</a>: <a href="tel:+13039541068">303-954-1068</a>, <a href="mailto:jingold@denverpost.com?Oil and Gas Deaths project">jingold@denverpost.com</a> or <a href="twitter.com/johningold" title="John Ingold on Twitter">@johningold</a></i></p>
 	</div>
 </div>
@@ -439,7 +489,6 @@
 		<div class="large-5 pull-1 columns">
 			<p><strong><a href="http://twitter.com/schneidan">Daniel J. Schneider</a></strong>, <em>Lead Developer, Web Designer</em></p>
 			<p><strong><a href="mailto:sgalvan@denverpost.com?Oil and Gas Deaths project">Kevin Hamm</a></strong>, <em>Interactive &amp; Data Designer</em></p>
-			<p><strong>Severiano Galv&aacute;n</strong>, <em>Graphic Artist</em></p>
 		</div>
 	</div>
 
@@ -449,6 +498,8 @@
 <script type="text/javascript" src="./js/foundation.min.js"></script>
 <script type="text/javascript" src="./js/foundation/foundation.equalizer.js"></script>
 <script type="text/javascript" src="./js/functions.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8 "></script>
+<script src="./js/c3.min.js"></script>
 
 	<script>
 		$(document).foundation({

@@ -579,7 +579,7 @@ p.small {
     font-weight:400;
 }
 a, a *, * a, a:visited, a:visited *, * a:visited, a:active, a:active *, * a:active, a:focus, a:focus *, * a:focus {
-    color:#004646;
+    color:#304080;
     outline:none;
 }
 p a, p a:visited {
@@ -669,6 +669,9 @@ a.source:before {
     width:100%;
     padding:0;
     margin:2em 0 4em;
+}
+.centerphoto p {
+    line-height:1.6;
 }
 p.credit {
     text-transform:uppercase;
@@ -977,7 +980,7 @@ a.startVideo:before {
     background-repeat: no-repeat;
 }
 a.startVideo:hover {
-    border-bottom:1px solid #004646;
+    border-bottom:1px solid #304080;
 }
 .inset-video-right {
     float:right;
@@ -1337,7 +1340,7 @@ div#footer-bar ul.social li {
 #narratives td.highlightCell {
     background-color: rgba(22, 117, 175, .8);
 }
-#narratives .source {
+p.source {
     font-style: italic;
     text-align: right;
     font-size:80%;
