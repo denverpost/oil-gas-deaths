@@ -177,9 +177,9 @@ p.lead {
 }
 p.lead:first-letter {
     float:left;
-    font-size:6em;
+    font-size:7em;
     font-weight:700;
-    line-height:.75;
+    line-height:.88;
     color:#646464;
     margin-right:.15em;
     margin-bottom:.25em;
