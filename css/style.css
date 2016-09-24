@@ -1114,6 +1114,7 @@ div#footer-bar ul.social li {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-attachment: absolute;
+    background-color:#fff;
 }
 .closer div#next-inning-teaser {
     position: absolute;
@@ -1128,24 +1129,24 @@ div#footer-bar ul.social li {
     position: absolute;
     margin-left:50%;
     width:50%;
-    padding:40px 20% 40px 40px;
+    padding:1em 15% 1em 1em;
     height:100%;
     top:0;
     background:#000;
-    background-image:url(../img/nextButton2.svg);
+    background-image:url(../img/nextButton3.svg);
     background-repeat:no-repeat;
     background-position:90% 50%;
-    background-size:20%;
+    background-size:15%;
     font-family:'Arapey', Georgia, Times, 'Times New Roman', serif !important;
     font-weight:700;
-    font-size:3em;
+    font-size:2.5em;
     text-align:left;
-    line-height:1;
+    line-height:1.1;
     color:#f9f9f9;
     letter-spacing:2px;
 }
-.closer div#next-inning-teaser.coming h2 {
-    background-image:none;
+.closer a div#next-inning-teaser h2 {
+    background-image:url(../img/nextButton2.svg);
 }
 .closer div#next-inning-teaser h2 span {
     display: block;
@@ -1157,6 +1158,10 @@ div#footer-bar ul.social li {
     line-height:1;
     color:#c9c9c9;
     letter-spacing:1px;
+}
+.closer div#next-inning-teaser h2 span:nth-child(2) {
+    margin-top:1em;
+    font-size: 60%;
 }
 .closer div#next-inning-teaser:hover .teaser {
     opacity:0.75;
@@ -1370,6 +1375,9 @@ p.source {
         top:5%;
         height:90%;
     }
+    .closer div#next-inning-teaser h2 {
+        font-size:2.1em;
+    }
 }
 @media (max-width:70em) {
     section.inset.right {
@@ -1456,7 +1464,7 @@ p.source {
         font-size: .9em;
     }
     .closer div#next-inning-teaser h2 {
-        font-size:2.25em;
+        font-size:1.9em;
     }
 }
 @media (max-width:800px) {
@@ -1568,7 +1576,7 @@ p.source {
         padding: .5em 1em .5em;
     }
     .closer div#next-inning-teaser h2 {
-        font-size:1.8em;
+        font-size:1.6em;
     }
 }
 @media (max-width:540px) and (orientation:landscape) {
@@ -1600,6 +1608,6 @@ p.source {
         font-size: 1em;
     }
     .closer div#next-inning-teaser h2 {
-        font-size:1.5em;
+        font-size:1.3em;
     }
 }
