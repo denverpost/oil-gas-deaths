@@ -237,13 +237,14 @@
 	<div class="large-9 large-centered medium-10 medium-centered small-12 columns">
 		<div class="centerphoto">
 			<h3>U.S. oil and gas worker fatalities 2003-14</h3>
-		    <p>From 2003 to 2014, more than 1,300 oil and gas workers in the United States were killed on the job. Colorado had 45 fatalities in that time period, ranking seventh in the country. Texas had the most with 538 killed on the job. Because of different reporting standards on the state and federal levels, an exact number is hard to confirm.</em></p>
-		    <div style="height: 400px;" id="bar-fatalities"></div>
-		    <p class="source">Source: Bureau of Labor Statistics, Denver Post research</p>
+		    <p>From 2003 to 2014, more than 1,300 oil and gas workers in the United States were killed on the job. The top chart shows the number of oil and gas worker fatalities plotted against the average annual rig count. The bottom chart shows the fatality rate per 100 rigs.</p>
+		    <div style="height: 300px;" id="bar-us-fatalities-2003-14"></div>
+		    <div style="height: 300px;" id="bar-us-fatality-rate-2003-14"></div>
+		    <p class="source">Source: Bureau of Labor Statistics, Baker Hughes Rig Count</p>
 		    <script>
 		    // ----- BAR CHART: FATALITIES BY STATE ----- //
 			    $(document).ready(function(){
-			    	var barFatalities=c3.generate({bindto:"#bar-fatalities",data:{x:"x",columns:[["x","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],["Colorado",4,6,4,3,4,6,0,0,5,7,0,6]]},type:"line",axis:{y:{label:{text:"Worker fatalities",position:"outer-middle"}}},grid:{x:{show:!1},y:{show:!0}},legend:{position:"inset"}});setTimeout(function(){barFatalities.load({columns:[["Texas",33,34,40,46,48,41,26,43,41,65,50,71]],type:"line"})},3e3),setTimeout(function(){barFatalities.load({columns:[["National total",85,98,98,125,122,120,68,107,112,142,112,144]],type:"bar"})},6e3),setTimeout(function(){barFatalities.load({columns:[["Oklahoma",8,11,12,12,12,21,6,9,16,16,6,15],["Louisiana",12,10,9,18,12,13,11,20,6,10,6,9],["New Mexico",7,5,3,7,11,4,0,3,7,5,10,13],["Wyoming",6,7,11,8,8,7,0,5,5,3,0,5],["North Dakota",0,0,0,0,0,0,4,0,10,14,12,8]],type:"line"})},9e3),barFatalities.data.colors({"National total":"#ddd",Colorado:"#cd0000",Texas:"#000",Oklahoma:"#bbb",Louisiana:"#bbb","New Mexico":"#bbb",Wyoming:"#bbb","North Dakota":"#bbb"});
+			    	var barUSFatalities=c3.generate({bindto:"#bar-us-fatalities-2003-14",data:{x:"x",columns:[["x","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],["Average U.S. rig count",924,1095,1290,1559,1695,1814,1046,1514,1846,1871,1705,1804],["U.S. oil and gas fatalities",85,98,98,125,122,120,68,107,112,142,112,144]],types:{"Average U.S. rig count":"bar","U.S. oil and gas fatalities":"line"},axes:{"Average U.S. rig count":"y","U.S. oil and gas fatalities":"y2"}},grid:{x:{show:!1},y:{show:!0}},legend:{position:"inset"},axis:{y:{label:{text:"Average U.S. rig count (bar)",position:"outer-middle"}},y2:{show:!0,label:{text:"U.S. oil and gas fatalities (line)",position:"outer-middle"}}}});barUSFatalities.data.colors({"Average U.S. rig count":"#ddd","U.S. oil and gas fatalities":"#000"});var barUSFatalityRate2003to14=c3.generate({bindto:"#bar-us-fatality-rate-2003-14",data:{x:"x",columns:[["x","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],["Fatality rate per 100 rigs",9.2,9,7.6,8,7.2,6.6,6.5,7.1,6.1,7.6,6.7,8]],type:"bar"},grid:{x:{show:!1},y:{show:!0}},legend:{position:"inset"},axis:{y:{label:{text:"Fatality rate per 100 rigs",position:"outer-middle"}},y2:{label:{text:"&nbsp;",position:"outer-middle"}}}});barUSFatalityRate2003to14.data.colors({"Fatality rate per 100 rigs":"#4682b4"});
 				});
 		    </script>
 		</div>
@@ -1161,51 +1162,8 @@
 		        </div>
 		    </div>
 		    <script>
-		    var table = document.getElementById("profile");
-		    if (table != null) {
-		        for (var i = 0; i < table.rows.length; i++) {
-		            for (var j = 0; j < table.rows[i].cells.length; j++)
-		                table.rows[i].cells[j].onclick = function() {
-		                    highlightCell(this);
-		                    tableText(this);
-		                };
-		        }
-		    };
-
-		    function highlightCell(tableCell) {
-		    	$('td.cell').each(function(){
-		    		$(this).removeClass('highlightCell');
-		    	});
-		    	$(tableCell).addClass('highlightCell');
-		    }
-		    // Loop through and get the profiles
-		    function tableText(tableCell) {
-		        document.getElementById("profile-container").innerHTML = tableCell.innerHTML;
-		    };
-
-		    // Highlight table cells related to fatality categories on legend click
-		    var classname = document.getElementsByClassName("click-type");
-
-		    var typeClick = function() {
-		        var elems = document.querySelectorAll(".cell");
-
-		        [].forEach.call(elems, function(el) {
-		            el.classList.remove("cell-highlight");
-		        });
-		        var type = this.getAttribute("data-type");
-		        var cells = document.getElementsByClassName(type),
-		            i = cells.length;
-		        $('td.cell').each(function(){
-		    		$(this).removeClass('highlightCell');
-		    	});
-		    	while (i--) {
-		            cells[i].classList.add("cell-highlight");
-		        }
-		    };
-		    for (var i = 0; i < classname.length; i++) {
-		        classname[i].addEventListener('click', typeClick, false);
-		    };
 		    $(document).ready(function(){
+		    	function highlightCell(a){$("td.cell").each(function(){$(this).removeClass("highlightCell")}),$(a).addClass("highlightCell")}function tableText(a){document.getElementById("profile-container").innerHTML=a.innerHTML}var table=document.getElementById("profile");if(null!=table)for(var i=0;i<table.rows.length;i++)for(var j=0;j<table.rows[i].cells.length;j++)table.rows[i].cells[j].onclick=function(){highlightCell(this),tableText(this)};for(var classname=document.getElementsByClassName("click-type"),typeClick=function(){var a=document.querySelectorAll(".cell");[].forEach.call(a,function(a){a.classList.remove("cell-highlight")});var b=this.getAttribute("data-type"),c=document.getElementsByClassName(b),d=c.length;for($("td.cell").each(function(){$(this).removeClass("highlightCell")});d--;)c[d].classList.add("cell-highlight")},i=0;i<classname.length;i++)classname[i].addEventListener("click",typeClick,!1);
 		    	$('#firstCell').click();
 		    	$('td.cell').each(function(){
 		    		$(this).removeClass('highlightCell');
@@ -1224,7 +1182,7 @@
 		<p>But OSHA officials also worried the warrant requirements could harm enforcement efforts and rob them of their greatest asset: surprise. After Nabors Drilling denied an inspector access to a job site in 2007, OSHA wrote in a subsequent warrant request, &ldquo;Nabors Drilling effectively obtained advanced notice of the inspection.&rdquo;</p>
 		<div class="large-6 columns inset-video-right" id="12-expert-randy-kelly-reluctance-to-complain-video">
 			<div>
-		        <h3>Fatalities by age and cause, 2003-14</h3>
+		        <h3>U.S. fatalities by age and cause, 2003-14</h3>
 		        <div style="width: 100%; clear:right; margin-top:1em;" id="donut-age"></div>
 		        <div style="width: 100%; margin-top:1em;" id="donut-type"></div>
 		        <p class="source">Source: Bureau of Labor Statistics, Denver Post research</p>
