@@ -1144,6 +1144,9 @@ div#footer-bar ul.social li {
     color:#f9f9f9;
     letter-spacing:2px;
 }
+.closer div#next-inning-teaser.coming h2 {
+    background-image:none;
+}
 .closer div#next-inning-teaser h2 span {
     display: block;
     font-family:'Arapey', Helvetica, Arial, sans-serif !important;
@@ -1166,6 +1169,10 @@ div#footer-bar ul.social li {
 }
 .closer div#next-inning-teaser:hover h2 {
     margin-left:52.5%;
+}
+.closer div#next-inning-teaser.coming:hover {
+    cursor:default;
+    pointer-events: none;
 }
 /* narratives table */
 #narratives th.legend {
