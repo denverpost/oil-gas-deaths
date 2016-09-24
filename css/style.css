@@ -581,6 +581,10 @@ a, a *, * a, a:visited, a:visited *, * a:visited, a:active, a:active *, * a:acti
     color:#304080;
     outline:none;
 }
+a small {
+    font-size:65%;
+    color:#555;
+}
 p a, p a:visited {
     text-decoration: underline;
 }
