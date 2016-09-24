@@ -236,14 +236,15 @@
 <div class="row">
 	<div class="large-9 large-centered medium-10 medium-centered small-12 columns">
 		<div class="centerphoto">
-			<h3>U.S. oil and gas worker fatalities 2003-14</h3>
-		    <p>From 2003 to 2014, more than 1,300 oil and gas workers in the United States were killed on the job. Colorado had 45 fatalities in that time period, ranking seventh in the country. Texas had the most with 538 killed on the job. Because of different reporting standards on the state and federal levels, an exact number is hard to confirm.</em></p>
-		    <div style="height: 400px;" id="bar-fatalities"></div>
-		    <p class="source">Source: Bureau of Labor Statistics, Denver Post research</p>
+			<h3>Oil and gas worker fatalities by rig count</h3>
+		    <p>According to the latest Bureau of Labor Statistics data, there were 51 deaths in Colorado related to the oil and gas industry from 2003 to 2014. Because of worker privacy issues, the BLS would not release years for all of those deaths. Nationally, 1,333 oil and gas workers were killed in the same 12-year time frame.</p>
+		    <div style="height: 300px;" id="bar-us-fatalities-2003-14"></div>
+		    <div style="height: 300px;" id="bar-co-fatalities-2003-14"></div>
+		    <p class="source">Source: Bureau of Labor Statistics, Baker Hughes Rig Count</p>
 		    <script>
 		    // ----- BAR CHART: FATALITIES BY STATE ----- //
 			    $(document).ready(function(){
-			    	var barFatalities=c3.generate({bindto:"#bar-fatalities",data:{x:"x",columns:[["x","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],["Colorado",4,6,4,3,4,6,0,0,5,7,0,6]]},type:"line",axis:{y:{label:{text:"Worker fatalities",position:"outer-middle"}}},grid:{x:{show:!1},y:{show:!0}},legend:{position:"inset"}});setTimeout(function(){barFatalities.load({columns:[["Texas",33,34,40,46,48,41,26,43,41,65,50,71]],type:"line"})},3e3),setTimeout(function(){barFatalities.load({columns:[["National total",85,98,98,125,122,120,68,107,112,142,112,144]],type:"bar"})},6e3),setTimeout(function(){barFatalities.load({columns:[["Oklahoma",8,11,12,12,12,21,6,9,16,16,6,15],["Louisiana",12,10,9,18,12,13,11,20,6,10,6,9],["New Mexico",7,5,3,7,11,4,0,3,7,5,10,13],["Wyoming",6,7,11,8,8,7,0,5,5,3,0,5],["North Dakota",0,0,0,0,0,0,4,0,10,14,12,8]],type:"line"})},9e3),barFatalities.data.colors({"National total":"#ddd",Colorado:"#cd0000",Texas:"#000",Oklahoma:"#bbb",Louisiana:"#bbb","New Mexico":"#bbb",Wyoming:"#bbb","North Dakota":"#bbb"});
+			    	var barUSFatalities=c3.generate({bindto:'#bar-us-fatalities-2003-14',data:{x:'x',columns:[['x','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014'],['U.S. average annual rig count',924,1095,1290,1559,1695,1814,1046,1514,1846,1871,1705,1804],['U.S. oil and gas fatalities',85,98,98,125,122,120,68,107,112,142,112,144]],types:{'U.S. average annual rig count':'bar','U.S. oil and gas fatalities':'line'},axes:{'U.S. average annual rig count':'y','U.S. oil and gas fatalities':'y2'}},grid:{x:{show:!1},y:{show:!0}},legend:{position:'inset'},axis:{y:{label:{text:'U.S. average annual rig count (bar)',position:'outer-middle'}},y2:{show:!0,label:{text:'U.S. oil and gas fatalities (line)',position:'outer-middle'}}}});barUSFatalities.data.colors({'U.S. average annual rig count':'#ddd','U.S. oil and gas fatalities':'#000'});var barCOFatalities=c3.generate({bindto:'#bar-co-fatalities-2003-14',data:{x:'x',columns:[['x','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014'],['Colorado average annual rig count',39,54,74,89,107,114,50,58,72,64,63,68],['Colorado oil and gas fatalities',4,6,4,3,4,6,0,0,5,7,0,6]],types:{'Colorado average annual rig count':'bar','Colorado oil and gas fatalities':'line'},axes:{'Colorado average annual rig count':'y','Colorado oil and gas fatalities':'y2'}},grid:{x:{show:!1},y:{show:!0}},legend:{position:'inset'},axis:{y:{label:{text:'Colorado average U.S. rig count (bar)',position:'outer-middle'}},y2:{show:!0,label:{text:'Colorado oil and gas fatalities (line)',position:'outer-middle'}}}});barCOFatalities.data.colors({'Colorado average annual rig count':'#4682b4','Colorado oil and gas fatalities':'#000'});
 				});
 		    </script>
 		</div>
@@ -1235,26 +1236,6 @@
 		<p>Sometimes, he said, OSHA inspectors are mistaken in their initial findings, something proved during the settlement process. More important, Gibson said cutting fines is a quick way to resolve a case &mdash; and thus get the oil and gas company to fix the underlying safety problems more promptly.</p>
 		<p>&ldquo;One of the focuses is to improve their safety and health program,&rdquo; Gibson said. &ldquo;That should be the big focus.&rdquo;</p>
 		<p>The fine reductions are not limited to the oil and gas industry. But The Post&rsquo;s analysis suggests the industry may benefit from them more than others.</p>
-		</div>
-</div>
-<div class="row">
-	<div class="large-9 large-centered medium-10 medium-centered small-12 columns">
-		<div class="centerphoto">
-			<h3>Colorado oil and gas worker fatality rate and OSHA oil and gas inspections</h3>
-	        <p>The chart plots the number of OSHA inspections of oil and gas facilities in Colorado from 2003-14 by the rate of fatalities.
-            <div style="height: 400px;" id="bar-osha-inspections-fatalities"></div>
-            <p class="source">Bureau of Labor Statistics, Denver Post research</p>
-		    <script>
-		    // ----- BAR CHART: FATALITIES BY STATE ----- //
-			    $(document).ready(function(){
-			    	var barInspections=c3.generate({bindto:"#bar-osha-inspections-fatalities",data:{x:"x",columns:[["x","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],["OSHA oil and gas inspections",11,29,58,64,128,107,55,53,72,52,42,53],["Fatality rate per 100 rigs",5.1,5.5,2.7,6.8,4.7,7,0,0,0,6.2,1.6,10.3]],types:{"OSHA oil and gas inspections":"bar","Rate per 100 rigs":"line"},axes:{"Fatality rate per 100 rigs":"y2"}},grid:{x:{show:!1},y:{show:!0}},legend:{position:"inset"},axis:{y:{label:{text:"OSHA oil and gas inspections (bar)",position:"outer-middle"}},y2:{show:!0,label:{text:"Fatality rate (line)",position:"outer-middle"}}}});barInspections.data.colors({"OSHA oil and gas inspections":"#ddd","Fatality rate per 100 rigs":"#000"});
-				});
-		    </script>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="large-7 large-centered medium-9 medium-centered small-12 columns">
 		<p>Analyzing OSHA data between 2000 and 2015, The Post found about $40.6 million worth of fines levied against all companies in Colorado, reduced to $25.5 million after settlement. That&rsquo;s a drop of 37 percent. For the same period, the oil and gas industry in Colorado saw its total fines reduced by 43 percent, The Post found. Other heavily inspected industries &mdash; roofing, construction framing, commercial construction and homebuilding &mdash; all saw fine reductions between 30 and 39 percent over a comparable period, according to The Post&rsquo;s analysis.</p>
 		<p><a href="https://www.oig.dol.gov/public/reports/oa/2010/02-10-201-10-105.pdf">A 2010 audit</a> from the U.S. Department of Labor&rsquo;s Inspector General&rsquo;s Office raised further questions about the practice.</p>
 		<p>OSHA, the audit concluded, did not effectively track whether the fine reductions actually improved workplace safety, and the agency didn&rsquo;t do a good enough job of considering a company&rsquo;s safety track record when deciding to settle for a lower fine.</p>
