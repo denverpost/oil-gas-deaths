@@ -562,6 +562,24 @@ p, .reveal-modal li {
     content:"\2715";
     text-decoration:none;
 }
+div#comments {
+    display: block;
+    margin: 4em 0;
+    text-align: center;
+}
+.commentbutton {
+    -webkit-border-radius:.25em;
+    -moz-border-radius:.25em;
+    border-radius:.25em;
+    border:2px solid rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.05);
+    color: rgba(0,0,0,0.7);
+    text-transform: uppercase;
+    margin: 2em auto;
+    font-family:'Open Sans Condensed', Helvetica, Arial, sans-serif !important;
+    font-size: 1.5em;
+    padding: .5em 2.5em;
+}
 h3.subheading {
     font-family:'Source Serif Pro', Georgia, Times, serif;
     font-size:2.2em;

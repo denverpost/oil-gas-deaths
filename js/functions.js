@@ -54,6 +54,28 @@ function checkHash() {
     }
 }
 
+function makeComments() {
+    var canonical = "";
+    var links = document.getElementsByTagName("link");
+    for (var i = 0; i < links.length; i ++) {
+        if (links[i].getAttribute("rel") === "canonical") {
+            canonical = links[i].getAttribute("href")
+        }
+    }
+    var output='<div id="disqus_thread"></div> \n\
+                <script> \n\
+                var disqus_config = function () { this.page.url = \'' + canonical + '\' }; \n\
+                (function() {  \n\
+                    var d = document, s = d.createElement(\'script\'); \n\
+                    s.src = \'//dfm-denverpost.disqus.com/embed.js\';  \n\
+                    s.setAttribute(\'data-timestamp\', +new Date()); \n\
+                    (d.head || d.body).appendChild(s); \n\
+                })(); \n\
+                </script> \n\
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>';
+    $('#comments').html(output);
+}
+
 function scrollDownTo(whereToScroll, scrollOffset) {
     scrollOffset = typeof scrollOffset !== 'undefined' ? scrollOffset : 60;
     if ($(whereToScroll).length) {
