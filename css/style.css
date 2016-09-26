@@ -555,7 +555,7 @@ p, .reveal-modal li {
     border:2px solid #eee;
     width:1.4em;
     height:1.4em;
-    padding:.05em 0 0 .2em;
+    padding:.15em 0 0 .2em;
     background:#333;
 }
 .reveal-modal .close-reveal-modal:before {
